@@ -1,24 +1,25 @@
 // components/Header.js
 import Link from 'next/link';
+import Logo from './Logo';
 
 export default function Header() {
   return (
     <header className="bg-white shadow-md p-4">
       <div className="container mx-auto flex justify-between items-center">
-        <Link href="/" className="text-xl font-bold text-blue-600">
-          MyApp
+        <Link href="/" className="flex items-center">
+            <Logo />
         </Link>
-        <nav className="space-x-4">
-          <Link href="/" className="text-gray-700 hover:text-blue-600">
+        <nav className="space-x-8">
+          <Link href="/" className="text-gray-700 inline-flex items-center px-4 py-2 hover:bg-blue-100 hover:rounded-full hover:text-blue-600 hover:font-bold transition-all duration-200 font-poppins">
             Ứng dụng
           </Link>
-          <Link href="/nghiencuu" className="text-gray-700 hover:text-blue-600">
+          <Link href="/nghiencuu" className="text-gray-700 inline-flex items-center px-4 py-2 hover:bg-blue-100 hover:rounded-full hover:text-blue-600 hover:font-bold transition-all duration-200 font-poppins">
             Nghiên cứu
           </Link>
-          <Link href="/gochoctap" className="text-gray-700 hover:text-blue-600">
+          <Link href="/gochoctap" className="text-gray-700 inline-flex items-center px-4 py-2 hover:bg-blue-100 hover:rounded-full hover:text-blue-600 hover:font-bold transition-all duration-200 font-poppins">
             Góc học tập
           </Link>
-          <Link href="/vechungtoi" className="text-gray-700 hover:text-blue-600">
+          <Link href="/vechungtoi" className="text-gray-700 inline-flex items-center px-4 py-2 hover:bg-blue-100 hover:rounded-full hover:text-blue-600 hover:font-bold transition-all duration-200 font-poppins">
             Về chúng tôi
           </Link>
         </nav>
