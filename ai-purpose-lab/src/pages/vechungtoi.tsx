@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from "react"
 import Link from "next/link"
 
@@ -33,46 +32,11 @@ const Quote = ({
 export default function Home() {
   return (
     <div className="grid grid-rows-[auto_1fr_auto] min-h-screen font-[family-name:var(--font-geist-sans)]">
-      {/* Header */}
-      <header className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <div className="flex items-center">
-          <div className="h-8 w-8" style={{ backgroundColor: "var(--blue-700)" }}></div>
-          <div className="font-semibold ml-2" style={{ color: "var(--blue-700)" }}>
-            <span>Purpose</span>
-            <span className="ml-1">Lab</span>
-          </div>
-        </div>
-        <nav>
-          <ul className="flex space-x-6 text-sm">
-            <li>
-              <Link href="#" className="hover:underline hover:underline-offset-4" style={{ color: "var(--blue-700)" }}>
-                Ứng dụng
-              </Link>
-            </li>
-            <li>
-              <Link href="#" className="hover:underline hover:underline-offset-4" style={{ color: "var(--blue-700)" }}>
-                Nghiên cứu
-              </Link>
-            </li>
-            <li>
-              <Link href="#" className="hover:underline hover:underline-offset-4" style={{ color: "var(--blue-700)" }}>
-                Đào Tạo-Tập
-              </Link>
-            </li>
-            <li>
-              <Link href="#" className="hover:underline hover:underline-offset-4" style={{ color: "var(--blue-700)" }}>
-                Về chúng tôi
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
-
       {/* Hero Section */}
       <section
         className="py-16"
         style={{
-          background: linear-gradient(to bottom, var(--blue-50), var(--blue-200)),
+          background: "linear-gradient(to bottom, var(--blue-50), var(--blue-200))",
         }}
       >
         <div className="container mx-auto px-4">
@@ -259,9 +223,3 @@ export default function Home() {
     </div>
   )
 }
-=======
-export default function vechungtoi() {
-    return <div className="p-8">This is the About page.</div>;
-  }
-  
->>>>>>> main
