@@ -8,7 +8,7 @@ import {
   } from "@/components/ui/card"
   import { Button } from "@/components/ui/button"
   
-  export function ProfileCard() {
+  export function ExampleCard() {
     return (
         <Card className="w-full max-w-md bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 border-none shadow-md">
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-700 
