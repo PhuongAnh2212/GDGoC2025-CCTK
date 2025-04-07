@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react"
 import Link from "next/link"
 
@@ -258,3 +259,9 @@ export default function Home() {
     </div>
   )
 }
+=======
+export default function vechungtoi() {
+    return <div className="p-8">This is the About page.</div>;
+  }
+  
+>>>>>>> main
