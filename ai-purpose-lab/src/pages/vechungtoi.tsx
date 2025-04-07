@@ -1,5 +1,7 @@
 import React from "react"
 import Link from "next/link"
+import "./style/vechungtoi.css";
+import {ProfileCard} from "../components/AUCard";
 
 // Custom Quote icon component to replace lucide-react dependency
 const Quote = ({
@@ -217,6 +219,7 @@ export default function Home() {
                 </button>
               </div>
             </div>
+            <ProfileCard />
           </div>
         </div>
       </section>
