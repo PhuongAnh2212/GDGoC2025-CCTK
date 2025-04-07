@@ -6,7 +6,7 @@
 //     );
 //   }
 "use client"
-
+import Link from "next/link"
 import type React from "react"
 
 import { useState } from "react"
@@ -87,7 +87,6 @@ export default function Home() {
   return (
     <div className="flex flex-col h-screen bg-white">
       {/* Header */}
-      <Header />
 
       <div className="flex flex-1 overflow-hidden">
         {/* Sidebar */}
