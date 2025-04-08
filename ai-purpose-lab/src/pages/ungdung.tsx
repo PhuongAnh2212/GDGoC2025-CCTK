@@ -12,7 +12,7 @@ import type React from "react"
 import { useState } from "react"
 import UnifiedSidebar from "@/components/unified-sidebar"
 import DataTable from "@/components/data-table"
-import Header from "@/components/header"
+import Header from "@/components/Header"
 import { PenLineIcon, Share2Icon, MicIcon, SendIcon, PlusIcon } from "@/components/icons"
 
 // Message type definition
