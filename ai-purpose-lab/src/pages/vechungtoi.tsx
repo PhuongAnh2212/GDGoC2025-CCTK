@@ -1,228 +1,178 @@
-import React from "react"
-import Link from "next/link"
-import "./style/vechungtoi.css";
-import {ExampleCard} from "../components/AUCard";
+import Image from "next/image"
+import  Logo from "public/logo.svg"
 
-// Custom Quote icon component to replace lucide-react dependency
-const Quote = ({
-  className = "",
-  style,
-}: {
-  className?: string
-  style?: React.CSSProperties
-}) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-      style={style}
-    >
-      <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
-      <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" />
-    </svg>
-  )
-}
+import { MapPin, Mail, Phone, ArrowRight } from "lucide-react"
 
-export default function Home() {
+export default function AboutPage() {
   return (
-    <div className="grid grid-rows-[auto_1fr_auto] min-h-screen font-[family-name:var(--font-geist-sans)]">
-      {/* Hero Section */}
-      <section
-        className="py-16"
-        style={{
-          background: "linear-gradient(to bottom, var(--blue-50), var(--blue-200))",
-        }}
-      >
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            {/* Main Heading */}
-            <h1 className="text-5xl font-bold mb-6" style={{ color: "var(--blue-700)" }}>
-              Building
-              <br />
-              Responsible AI,
-              <br />
-              <div className="flex items-center">
-                <span>together, with</span>
-                <div className="flex items-center ml-2">
-                  <div className="h-10 w-10 transform rotate-180" style={{ backgroundColor: "var(--blue-700)" }}></div>
-                  <div className="font-semibold ml-1" style={{ color: "var(--blue-700)" }}>
-                    <span>Purpose</span>
-                    <span className="ml-1">Lab</span>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100">
+
+      <main>
+                {/* REDESIGNED Hero Section - Now in the Middle */}
+                <section className="relative py-20 my-16 overflow-hidden">
+          {/* Background Elements */}
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-500 skew-y-3 transform origin-top-right z-0"></div>
+          <div className="absolute -right-20 -top-20 w-64 h-64 bg-blue-400 rounded-full opacity-20"></div>
+          <div className="absolute -left-10 bottom-10 w-40 h-40 bg-blue-300 rounded-full opacity-20"></div>
+
+          <div className="container relative z-10 mx-auto px-4">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              {/* Left Column - Main Heading */}
+              <div className="text-white">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                  Xây dựng AI 
+                  <span className="relative">
+                    <span className="relative z-10"> có trách nhiệm</span>
+                    <span className="absolute bottom-2 left-0 w-full h-3 bg-blue-300 opacity-40 z-0"></span>
+                  </span>
+                </h1>
+                <p className="text-xl md:text-2xl font-light mb-8">
+                  Cùng nhau, chúng ta có thể tạo ra tương lai AI an toàn và bền vững
+                </p>
+                <div className="flex flex-wrap gap-4">
+                </div>
+              </div>
+
+              {/* Right Column - Quote Card */}
+              <div className="relative">
+                <div className="absolute -top-6 -left-6 w-12 h-12 bg-blue-300 rounded-full opacity-50"></div>
+                <div className="absolute -bottom-6 -right-6 w-12 h-12 bg-blue-300 rounded-full opacity-50"></div>
+
+                <div className="bg-white rounded-xl p-8 shadow-lg relative z-10 transform rotate-1 hover:rotate-0 transition-transform">
+                  <div className="text-blue-600 text-6xl font-serif absolute -top-8 left-4">"</div>
+                  <p className="text-gray-700 text-lg md:text-xl relative z-10 pt-4">
+                    Tại Purpose Lab, chúng tôi tin vào việc phát triển AI phục vụ nhân loại. Sứ mệnh của chúng tôi là
+                    tạo ra các giải pháp AI có trách nhiệm, trao quyền cho cá nhân và tổ chức đồng thời duy trì các tiêu
+                    chuẩn đạo đức cao nhất.
+                  </p>
+                  <div className="text-blue-600 text-6xl font-serif absolute -bottom-12 right-4">"</div>
+
+                  <div className="mt-6 pt-4 border-t border-gray-100">
+                    <div className="flex items-center">
+                    </div>
                   </div>
                 </div>
               </div>
-            </h1>
-
-            {/* Quote Card */}
-            <div className="bg-background rounded-xl p-6 my-10 relative shadow-sm">
-              <Quote
-                className="absolute -left-2 top-6 h-8 w-8 transform -scale-x-100"
-                style={{ color: "var(--blue-700)" }}
-              />
-              <p className="text-foreground px-6 font-[family-name:var(--font-geist-sans)]">
-                Tại đây với sự nhiệt giúp cá nhân và doanh nghiệp ứng dụng trí tuệ nhân tạo (AI) một cách hiệu quả và có
-                trách nhiệm. Trong thời đại AI phát triển mạnh mẽ, việc hiểu rõ các giải pháp AI không chỉ công nghệ, mà
-                còn đòi hỏi sự hiểu biết sâu sắc về quy trình, đối tượng và tác động xã hội.
-              </p>
-              <Quote className="absolute -right-2 bottom-6 h-8 w-8" style={{ color: "var(--blue-700)" }} />
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Services Section */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-2" style={{ color: "var(--blue-700)" }}>
-            Dịch vụ của chúng tôi
-          </h2>
-          <p className="text-center text-foreground/70 mb-12 max-w-3xl mx-auto font-[family-name:var(--font-geist-sans)]">
-            Để đáp ứng nhu cầu đa dạng của cá nhân và doanh nghiệp trong lĩnh vực AI, Purpose Lab cung cấp 3 gói dịch vụ
-            khác nhau để phù hợp theo từng nhu cầu cụ thể.
+        {/* Our Services - Now Second */}
+        <section className="container mx-auto px-4 py-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-blue-600 text-center mb-4">Dịch vụ của chúng tôi</h2>
+          <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+            Để đáp ứng nhu cầu đa dạng của cá nhân và doanh nghiệp trong thế giới hiện nay, Purpose Lab cung cấp ba loại
+            dịch vụ được thiết kế phù hợp với các kịch bản sử dụng khác nhau.
           </p>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {/* Service Card 1 */}
-            <div className="border border-foreground/10 rounded-lg p-6">
-              <h3 className="font-semibold mb-4" style={{ color: "var(--blue-700)" }}>
-                Dành cho cá nhân
-                <br />& doanh nghiệp mới bắt đầu
-              </h3>
-              <ul className="space-y-2 text-sm font-[family-name:var(--font-geist-sans)]">
-                <li className="flex items-start">
-                  <span className="mr-2" style={{ color: "var(--blue-700)" }}>
-                    •
-                  </span>
-                  <span>Trò chuyện AI cơ bản, giải đáp thắc mắc về trí tuệ AI</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-2" style={{ color: "var(--blue-700)" }}>
-                    •
-                  </span>
-                  <span>Đánh giá nhanh nhu cầu và khả năng ứng dụng</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-2" style={{ color: "var(--blue-700)" }}>
-                    •
-                  </span>
-                  <span>Tư vấn định hướng, thử nghiệm các công cụ</span>
-                </li>
-              </ul>
-              <div className="mt-auto pt-8">
-                <button
-                  className="w-full py-2 px-4 rounded-full transition-colors font-medium text-sm h-10"
-                  style={{
-                    backgroundColor: "var(--blue-700)",
-                    color: "var(--background)",
-                  }}
-                >
-                  Hoàn toàn miễn phí
-                </button>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: "🔍",
+                title: "Nghiên cứu & Phát triển AI",
+                description: [
+                  "Giải pháp AI tùy chỉnh cho các thách thức kinh doanh cụ thể",
+                  "Triển khai khuôn khổ AI đạo đức",
+                  "Kiểm toán thuật toán và phát hiện thiên kiến",
+                  "Hợp tác nghiên cứu với các tổ chức học thuật",
+                ],
+              },
+              {
+                icon: "🚀",
+                title: "Triển khai & Tích hợp AI",
+                description: [
+                  "Tích hợp liền mạch với các hệ thống hiện có",
+                  "Chiến lược triển khai và thực hiện",
+                  "Giám sát và tối ưu hóa hiệu suất",
+                  "Thiết kế cơ sở hạ tầng AI có khả năng mở rộng",
+                ],
+              },
+              {
+                icon: "🎓",
+                title: "Đào tạo & Giáo dục AI",
+                description: [
+                  "Hội thảo cho các đội ngũ kỹ thuật và phi kỹ thuật",
+                  "Chương trình phổ cập kiến thức AI cho tổ chức",
+                  "Báo cáo tóm tắt cho lãnh đạo về chiến lược AI",
+                  "Hỗ trợ liên tục và chuyển giao kiến thức",
+                ],
+              },
+            ].map((service, index) => (
+              <div key={index} className="bg-white rounded-xl p-6 shadow-sm border border-blue-100 flex flex-col">
+                <div className="text-4xl mb-4">{service.icon}</div>
+                <h3 className="text-xl font-bold text-blue-600 mb-4">{service.title}</h3>
+                <ul className="space-y-2 text-gray-600 flex-grow">
+                  {service.description.map((item, i) => (
+                    <li key={i} className="flex items-start">
+                      <span className="text-blue-600 mr-2">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
-
-            {/* Service Card 2 */}
-            <div className="border border-foreground/10 rounded-lg p-6">
-              <h3 className="font-semibold mb-4" style={{ color: "var(--blue-700)" }}>
-                Dành cho startup
-                <br />& doanh nghiệp vừa
-              </h3>
-              <ul className="space-y-2 text-sm font-[family-name:var(--font-geist-sans)]">
-                <li className="flex items-start">
-                  <span className="mr-2" style={{ color: "var(--blue-700)" }}>
-                    •
-                  </span>
-                  <span>Hỗ trợ triển khai mô hình AI theo đặc thù riêng</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-2" style={{ color: "var(--blue-700)" }}>
-                    •
-                  </span>
-                  <span>Phát triển ứng dụng theo yêu cầu</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-2" style={{ color: "var(--blue-700)" }}>
-                    •
-                  </span>
-                  <span>Tích hợp API, xử lý hiệu suất</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-2" style={{ color: "var(--blue-700)" }}>
-                    •
-                  </span>
-                  <span>Kỹ thuật prompt và fine-tuning mô hình</span>
-                </li>
-              </ul>
-              <div className="mt-auto pt-8">
-                <button
-                  className="w-full py-2 px-4 rounded-full transition-colors font-medium text-sm h-10"
-                  style={{
-                    backgroundColor: "var(--blue-700)",
-                    color: "var(--background)",
-                  }}
-                >
-                  2.000.000 VND/Tháng
-                </button>
-              </div>
-            </div>
-
-            {/* Service Card 3 */}
-            <div className="border border-foreground/10 rounded-lg p-6">
-              <h3 className="font-semibold mb-4" style={{ color: "var(--blue-700)" }}>
-                Tùy chỉnh theo yêu cầu
-                <br />
-                Dành cho doanh nghiệp lớn
-              </h3>
-              <ul className="space-y-2 text-sm font-[family-name:var(--font-geist-sans)]">
-                <li className="flex items-start">
-                  <span className="mr-2" style={{ color: "var(--blue-700)" }}>
-                    •
-                  </span>
-                  <span>Huấn luyện AI theo dữ liệu riêng biệt, bảo mật dữ liệu</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-2" style={{ color: "var(--blue-700)" }}>
-                    •
-                  </span>
-                  <span>Không giới hạn số lượng API, dịch vụ, mô hình khả dụng</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-2" style={{ color: "var(--blue-700)" }}>
-                    •
-                  </span>
-                  <span>Hỗ trợ triển khai, tối ưu hóa và đảm bảo chất lượng theo tiêu chuẩn</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-2" style={{ color: "var(--blue-700)" }}>
-                    •
-                  </span>
-                  <span>Đào tạo đội ngũ nội bộ, đồng hành theo chiến lược</span>
-                </li>
-              </ul>
-              <div className="mt-auto pt-8">
-                <button
-                  className="w-full py-2 px-4 rounded-full transition-colors font-medium text-sm h-10"
-                  style={{
-                    backgroundColor: "var(--blue-700)",
-                    color: "var(--background)",
-                  }}
-                >
-                  Tùy chỉnh
-                </button>
-              </div>
-            </div>
-            <ExampleCard />
+            ))}
           </div>
-        </div>
-      </section>
+        </section>
+
+
+
+        {/* Meet Our Team - Now Fourth */}
+        <section className="container mx-auto px-4 py-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-blue-600 mb-4">Gặp gỡ đội ngũ của chúng tôi</h2>
+          <p className="text-gray-600 max-w-2xl mb-12">
+          Chúng tôi không chỉ xây dựng sản phẩm, 
+          chúng tôi cùng nhau tạo nên những giá trị có ý nghĩa.
+          </p>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                name: "Phạm Đoàn Phương Anh",
+                role: "Chuyên ngành Khoa học máy tính",
+                university: "Đại học Fulbright Việt Nam",
+                image: "/placeholder.svg?height=400&width=400",
+              },
+              {
+                name: "Đinh Hồng Ngọc",
+                role: "Chuyên ngành Khoa học máy tính",
+                university: "Đại học Fulbright Việt Nam",
+                image: "/placeholder.svg?height=400&width=400",
+              },
+              {
+                name: "Lê Thị Phương Quỳnh",
+                role: "Chuyên ngành Khoa học máy tính và Kỹ thuật vị Nhân sinh",
+                university: "Đại học Fulbright Việt Nam",
+                image: "/placeholder.svg?height=400&width=400",
+              },
+              {
+                name: "Ngô Hoàng Thụy Khuê",
+                role: "Chuyên ngành Khoa học tích hợp",
+                university: "Đại học Fulbright Việt Nam",
+                image: "/placeholder.svg?height=400&width=400",
+              },
+            ].map((member, index) => (
+              <div key={index} className="relative">
+                <div className="relative h-80 rounded-xl overflow-hidden bg-gradient-to-b from-blue-400 to-blue-600">
+                  <Image
+                    src={member.image || "/placeholder.svg"}
+                    alt={member.name}
+                    fill
+                    className="object-cover mix-blend-overlay opacity-75"
+                  />
+                </div>
+                <div className="mt-4">
+                  <div className="inline-block bg-white rounded-full px-4 py-1 text-blue-600 font-medium">
+                    {member.name}
+                  </div>
+                  <p className="text-gray-700 mt-2">{member.role}</p>
+                  <p className="text-gray-500 text-sm">{member.university}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+      </main>
     </div>
   )
 }
