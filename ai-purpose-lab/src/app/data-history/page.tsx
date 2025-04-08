@@ -1,17 +1,10 @@
-// export default function ungdung() {
-//     return (
-//       <div className="p-4">
-//         <h1 className="text-3xl font-bold">Welcome to the Home Page</h1>
-//       </div>
-//     );
-//   }
 "use client"
-import Link from "next/link"
+
 import type React from "react"
 
 import { useState } from "react"
 import UnifiedSidebar from "@/components/unified-sidebar"
-import DataTable from "@/components/data-table"
+import DataAnalysis from "@/components/data-analysis"
 import Header from "@/components/header"
 import { PenLineIcon, Share2Icon, MicIcon, SendIcon, PlusIcon } from "@/components/icons"
 
@@ -23,12 +16,13 @@ type Message = {
   timestamp: string
 }
 
-export default function Home() {
+export default function DataHistoryPage() {
   // State for messages and input
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      content: "Create any table for me with the fields of last name, first name, address, phone, and email.",
+      content:
+        "Đây là review từ khách hàng quy 1/2023 của nhà hàng của tôi, nhà hàng chuyên đồ hải sản ở quận 7, thành phố Hồ Chí Minh, phân tích chi tiết bảng này và gợi ý phương thức tối ưu chi phí vận hành",
       sender: "user",
       timestamp: "2:03 PM, 15 Nov",
     },
@@ -68,7 +62,7 @@ export default function Home() {
     setTimeout(() => {
       const aiResponse: Message = {
         id: (Date.now() + 1).toString(),
-        content: `I'll help you with that: "${inputValue}"`,
+        content: `I'll analyze that: "${inputValue}"`,
         sender: "ai",
         timestamp: getCurrentTime(),
       }
@@ -87,9 +81,10 @@ export default function Home() {
   return (
     <div className="flex flex-col h-screen bg-white">
       {/* Header */}
+      <Header />
 
       <div className="flex flex-1 overflow-hidden">
-        {/* Sidebar */}
+        {/* Sidebar - Will automatically show history view when navigating to this page */}
         <UnifiedSidebar />
 
         {/* Main Content */}
@@ -97,7 +92,7 @@ export default function Home() {
           <main className="flex-1 overflow-y-auto bg-gradient-to-b from-blue-50/80 to-white">
             <div className="max-w-4xl mx-auto px-4 py-6">
               {/* Messages */}
-              {messages.map((message) => (
+              {messages.map((message, index) => (
                 <div key={message.id} className="mb-6">
                   {message.sender === "user" ? (
                     <div className="flex items-start gap-2">
@@ -121,7 +116,34 @@ export default function Home() {
                       <div className="flex-1">
                         <div className="font-bold mb-1">{message.timestamp}</div>
                         <p className="text-gray-700 mb-2">{message.content}</p>
-                        {message.id === "1" && <DataTable />}
+                        {index === 0 && (
+                          <>
+                            {/* Data Files */}
+                            <div className="mb-6 space-y-4">
+                              <div className="bg-white p-4 rounded-lg border">
+                                <h3 className="font-medium mb-1">review_nha_hang.csv</h3>
+                                <div className="text-sm text-gray-500 mb-2">
+                                  2,890 dòng - 1050 KB
+                                  <br />
+                                  Tệp CSV chứa đánh giá từ khách hàng về nhà hàng hải sản quận 7
+                                </div>
+                              </div>
+
+                              <div className="bg-white p-4 rounded-lg border">
+                                <h3 className="font-medium mb-1">tiktoker1.mp4</h3>
+                                <div className="text-sm text-gray-500 mb-2">
+                                  12:45 - 240 MB
+                                  <br />
+                                  Nội dung mời hai bạn gái giới thiệu món hải sản ở nhà hàng quận 7, trên sàn ăn, âm
+                                  thanh hài hòa
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* AI Response */}
+                            <DataAnalysis />
+                          </>
+                        )}
                       </div>
                     </div>
                   )}
@@ -171,5 +193,4 @@ export default function Home() {
     </div>
   )
 }
-
 
