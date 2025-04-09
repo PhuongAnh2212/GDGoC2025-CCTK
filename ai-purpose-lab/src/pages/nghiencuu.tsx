@@ -1,7 +1,8 @@
 "use client"
 
 import type React from "react"
-
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { AppSidebar } from "@/components/left-sidebar"
 import { useState, useRef, useEffect } from "react"
 import { useChat } from "ai/react"
 import {
@@ -23,6 +24,7 @@ import { RightSidebar } from "@/components/right-sidebar"
 import { UploadModal } from "@/components/upload-modal"
 import { SettingsModal } from "@/components/settings-modal"
 import Image from "next/image"
+import NghiencuuLayout from "./NghiencuuLayout"
 
 // Sample data for past conversations
 const pastConversations = [
@@ -154,65 +156,7 @@ export default function Home() {
   return (
     <div className="flex h-screen bg-gray-50">
       {/* Left Sidebar Toggle */}
-      <div className="fixed left-0 top-0 h-full z-10 transition-all duration-300 w-16 bg-white shadow-md flex flex-col">
-        <div className="flex flex-col items-center py-4 space-y-6 flex-1">
-          <Button
-            variant={leftSidebarContent === "datasets" ? "secondary" : "ghost"}
-            size="icon"
-            onClick={() => toggleLeftSidebar("datasets")}
-            className="relative"
-          >
-            <Database className="h-5 w-5" />
-            <span className="absolute -top-1 -right-1 bg-blue-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-              2
-            </span>
-          </Button>
-
-          <Button variant={leftSidebarContent === "filters" ? "secondary" : "ghost"} size="icon" onClick={() => {}}>
-            <Filter className="h-5 w-5" />
-          </Button>
-
-          <Button
-            variant={leftSidebarContent === "models" ? "secondary" : "ghost"}
-            size="icon"
-            onClick={() => toggleLeftSidebar("models")}
-          >
-            <div
-              className={`h-6 w-6 ${currentModel.color} rounded-full flex items-center justify-center text-white text-xs`}
-            >
-              {currentModel.logo}
-            </div>
-          </Button>
-
-          <Button
-            variant={leftSidebarContent === "conversations" ? "secondary" : "ghost"}
-            size="icon"
-            onClick={() => toggleLeftSidebar("conversations")}
-          >
-            <MessageSquare className="h-5 w-5" />
-          </Button>
-        </div>
-
-        <div className="flex flex-col items-center py-4">
-          <Button variant="ghost" size="icon" onClick={() => toggleLeftSidebar("settings")}>
-            <Settings className="h-5 w-5" />
-          </Button>
-        </div>
-      </div>
-      
-
-      {/* Left Sidebar Content */}
-      {leftSidebarOpen && (
-        <LeftSidebar
-          content={leftSidebarContent}
-          onClose={() => setLeftSidebarOpen(false)}
-          aiModels={aiModels}
-          currentModel={currentModel}
-          onSelectModel={selectModel}
-          pastConversations={pastConversations}
-          onSelectConversation={loadConversation}
-        />
-      )}
+      <NghiencuuLayout>
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col transition-all duration-300 ml-16 mr-80">
@@ -360,14 +304,16 @@ export default function Home() {
           }}
         />
       )}
+
       {/* Right Sidebar */}
       <RightSidebar hasData={hasConversationData} />
 
       {/* Upload Modal */}
       {showUploadModal && <UploadModal onClose={() => setShowUploadModal(false)} />}
+      </NghiencuuLayout> 
 
-      
     </div>
+    
   )
 }
 

@@ -1,135 +1,94 @@
+import * as React from "react"
+import { ArchiveX, Command, File, Inbox, Send, Trash2 } from "lucide-react"
+// import { NavUser } from "@/components/nav-user"
+import { Label } from "@/components/ui/label"
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarHeader,
+  SidebarInput,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  useSidebar,
+} from "@/components/ui/sidebar"
+import { Switch } from "@/components/ui/switch"
+const pastConversations = [
+  {
+    id: "1",
+    title: "Phân tích bài báo khoa học",
+    date: "2:03 PM, 15 Nov",
+    messages: [
+      { role: "user", content: "Phân tích bài báo khoa học về nguyên tố hidro dưới đây" },
+      {
+        role: "assistant",
+        content:
+          'Bài báo khoa học "Hidro: Nguyên Tố Cơ Bản Cho Tương Lai Năng Lượng" được xuất bản trên tạp chí Nature Energy vào năm 2023, tập trung vào vai trò của hidro trong các ứng dụng năng lượng sạch. Nghiên cứu này phân tích các phương pháp sản xuất hidro, tính chất và ứng dụng trong tương lai.',
+      },
+    ],
+  },
+  {
+    id: "2",
+    title: "Mạng một chiều trong dây",
+    date: "Yesterday, 10:45 AM",
+    messages: [
+      { role: "user", content: "Giải thích về mạng một chiều trong dây" },
+      {
+        role: "assistant",
+        content:
+          "Mạng một chiều trong dây là mô hình vật lý mô tả sự lan truyền của sóng hoặc hạt trong không gian một chiều. Trong mô hình này, các hạt chỉ có thể di chuyển theo một đường thẳng, thường được biểu diễn bằng một dây hoặc một ống.",
+      },
+    ],
+  },
+  {
+    id: "3",
+    title: "Đồng vị của carbohydrate",
+    date: "Mar 12, 2023",
+    messages: [
+      { role: "user", content: "Giải thích về đồng vị của carbohydrate" },
+      {
+        role: "assistant",
+        content:
+          "Đồng vị của carbohydrate là các phân tử carbohydrate có cùng công thức phân tử nhưng khác nhau về cấu trúc không gian. Điều này dẫn đến sự khác biệt về tính chất vật lý và hóa học, ảnh hưởng đến chức năng sinh học của chúng trong cơ thể.",
+      },
+    ],
+  },
+]
 
-"use client"
+// Sample data for AI models
+const aiModels = [
+  {
+    id: "purpose-lab",
+    name: "AI Purpose Lab",
+    description: "Default model",
+    logo: "AI",
+    color: "bg-blue-600",
+  },
+  {
+    id: "gemini",
+    name: "Gemini",
+    description: "Google AI",
+    logo: "G",
+    color: "bg-green-600",
+  },
+  {
+    id: "turbo",
+    name: "Turbo 3.5",
+    description: "OpenAI",
+    logo: "T",
+    color: "bg-teal-600",
+  },
+]
 
-import { X } from "lucide-react"
-import { Button } from "@/components/ui/button"
+export function LeftSidebar() {
+  const [isFirstMessage, setIsFirstMessage] = useState(true)
+  const [hasConversationData, setHasConversationData] = useState(false)
+  const [activeItem, setActiveItem] = React.useState(data.navMain[0])
+  const [mails, setMails] = React.useState(data.mails)
+  const { setOpen } = useSidebar()
 
-interface LeftSidebarProps {
-  content: "datasets" | "models" | "conversations" | "settings" | null
-  onClose: () => void
-  aiModels: Array<{
-    id: string
-    name: string
-    description: string
-    logo: string
-    color: string
-  }>
-  currentModel: {
-    id: string
-    name: string
-    description: string
-    logo: string
-    color: string
-  }
-  onSelectModel: (model: any) => void
-  pastConversations: Array<{
-    id: string
-    title: string
-    date: string
-    messages: Array<{
-      role: string
-      content: string
-    }>
-  }>
-  onSelectConversation: (conversation: any) => void
+  
 }
-
-export function LeftSidebar({
-  content,
-  onClose,
-  aiModels,
-  currentModel,
-  onSelectModel,
-  pastConversations,
-  onSelectConversation,
-}: LeftSidebarProps) {
-  return (
-    <div className="fixed left-16 top-0 h-full w-64 bg-white border-r shadow-md z-10">
-      {content === "datasets" && (
-        <>
-          <div className="flex justify-between items-center p-4 border-b">
-            <div className="flex items-center">
-              <div className="h-6 w-6 bg-blue-600 rounded-full flex items-center justify-center text-white mr-2">
-                <span className="text-xs">2</span>
-              </div>
-              <h2 className="font-semibold">Datasets</h2>
-            </div>
-            <Button variant="ghost" size="icon" onClick={onClose} className="h-8 w-8">
-              <X className="h-4 w-4" />
-            </Button>
-          </div>
-          <div className="p-4">
-            <h3 className="font-medium mb-2">Uploaded Datasets</h3>
-            <div className="border rounded p-3 mb-2">
-              <p className="text-sm font-medium">Hidro: Nguyên Tố Cơ Bản Cho Tương Lai Năng Lượng.pdf</p>
-              <p className="text-xs text-gray-500">Nature Energy (2023)</p>
-            </div>
-            <div className="border rounded p-3">
-              <p className="text-sm font-medium">Dataset_2.csv</p>
-              <p className="text-xs text-gray-500">Uploaded on 15 Nov 2023</p>
-            </div>
-          </div>
-        </>
-      )}
-
-      {content === "models" && (
-        <>
-          <div className="flex justify-between items-center p-4 border-b">
-            <h2 className="font-semibold">AI Models</h2>
-            <Button variant="ghost" size="icon" onClick={onClose} className="h-8 w-8">
-              <X className="h-4 w-4" />
-            </Button>
-          </div>
-          <div className="p-4">
-            <h3 className="font-medium mb-2">Select Model</h3>
-            <div className="space-y-2">
-              {aiModels.map((model) => (
-                <div
-                  key={model.id}
-                  className={`flex items-center p-2 rounded cursor-pointer ${
-                    currentModel.id === model.id ? "bg-blue-50 border border-blue-200" : "hover:bg-gray-100"
-                  }`}
-                  onClick={() => onSelectModel(model)}
-                >
-                  <div
-                    className={`h-8 w-8 ${model.color} rounded-full flex items-center justify-center text-white mr-3`}
-                  >
-                    {model.logo}
-                  </div>
-                  <div>
-                    <p className="font-medium">{model.name}</p>
-                    <p className="text-xs text-gray-500">{model.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </>
-      )}
-
-      {content === "conversations" && (
-        <>
-          <div className="flex justify-between items-center p-4 border-b">
-            <h2 className="font-semibold">Conversations</h2>
-            <Button variant="ghost" size="icon" onClick={onClose} className="h-8 w-8">
-              <X className="h-4 w-4" />
-            </Button>
-          </div>
-          <div className="p-4 space-y-2">
-            {pastConversations.map((conversation) => (
-              <div
-                key={conversation.id}
-                className="p-2 rounded hover:bg-gray-100 cursor-pointer"
-                onClick={() => onSelectConversation(conversation)}
-              >
-                <p className="font-medium">{conversation.title}</p>
-                <p className="text-xs text-gray-500">{conversation.date}</p>
-              </div>
-            ))}
-          </div>
-        </>
-      )}
-    </div>
-  )
-}
-
