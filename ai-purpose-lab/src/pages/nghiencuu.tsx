@@ -315,8 +315,8 @@ export default function Home() {
 
         {/* Chat Input */}
         {/* flex-1 overflow-y-auto p-6 bg-gradient-to-b from-blue-50 to-white */}
-        <div className="flex-1 bottom-0 left-0 w-full border-t bg-white p-4">
-          <form onSubmit={onSubmit} className="max-w-4xl mx-auto flex items-center gap-2">
+        <div className="fixed bottom-0 left-0 w-full border-t bg-white p-4">
+          <form onSubmit={onSubmit} className="max-w-4xl mx-auto flex gap-2">
             <Button
               type="button"
               variant="outline"
