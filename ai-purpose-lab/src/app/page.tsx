@@ -10,8 +10,9 @@ const HomePage = () => {
 
   return (
     <>
-      <Header setCurrentView={setCurrentView} currentView={currentView} />
-
+      <div className="fixed top-0 left-0 w-full z-50">
+        <Header setCurrentView={setCurrentView} currentView={currentView} />
+      </div>
       {currentView === "home" ? (
         <div className="container mx-auto p-4">
           <h1 className="text-3xl font-bold text-center mb-4">Welcome to MyApp</h1>

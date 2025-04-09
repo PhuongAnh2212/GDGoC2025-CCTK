@@ -44,7 +44,7 @@ export function LeftSidebar({
   onSelectConversation,
 }: LeftSidebarProps) {
   return (
-    <div className="fixed left-16 top-0 h-full w-64 bg-white border-r shadow-md z-10">
+    <div className="fixed left-16 top-18 h-full w-64 bg-white border-r shadow-md z-10">
       {content === "datasets" && (
         <>
           <div className="flex justify-between items-center p-4 border-b">

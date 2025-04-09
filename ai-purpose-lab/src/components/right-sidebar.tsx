@@ -7,7 +7,7 @@ interface RightSidebarProps {
 
 export function RightSidebar({ hasData }: RightSidebarProps) {
   return (
-    <div className="fixed right-0 top-0 h-full w-80 bg-white border-l shadow-md z-10 overflow-y-auto">
+    <div className="fixed right-0 top-18 h-full w-80 bg-white shadow-md z-10 overflow-y-auto">
     {/* <div className="hidden md:flex flex-col w-80 border-r bg-white border-l shadow-md z-10 overflow-y-auto"> */}
       <div className="p-4">
         <h2 className="text-xl font-bold text-blue-800 mb-4">Biểu đồ</h2>
@@ -63,11 +63,11 @@ export function RightSidebar({ hasData }: RightSidebarProps) {
 
           <Button variant="outline" size="sm" className="w-full flex items-center justify-center gap-1">
             <Plus className="h-4 w-4" />
-            <span>Thêm điểm kiến thức mới</span>
+            <span>Thêm điểm dữ liệu mới</span>
           </Button>
         </div>
 
-        <h2 className="text-xl font-bold text-blue-800 mb-4">Tóm tắt quan hệ giữa các hợp chất trong nghiên cứu</h2>
+        <h2 className="text-xl font-bold text-blue-800 mb-4">Tóm tắt quan hệ giữa các điểm dữ liệu</h2>
 
         {hasData ? (
           <div className="space-y-6">
