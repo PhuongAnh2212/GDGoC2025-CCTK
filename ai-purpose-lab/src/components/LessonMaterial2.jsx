@@ -1,6 +1,10 @@
 "use client";
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import "./LessonMaterial1.css"
+=======
+import "../pages/style/LessonMaterial1.css";
+>>>>>>> Stashed changes
 =======
 import "../pages/style/LessonMaterial1.css";
 >>>>>>> Stashed changes
