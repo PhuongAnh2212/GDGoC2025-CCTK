@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 "use client"
 import "./Card1.css"
 import { useState } from "react"
@@ -67,6 +68,8 @@ function Card1({
 }
 export default Card1
 =======
+=======
+>>>>>>> Stashed changes
 "use client";
 import "../pages/style/Card1.css";
 
@@ -117,5 +120,9 @@ function Card1({ imagesrc, alttext, title, name, data, baseLink, datalink, onCli
     );
 }
 
+<<<<<<< Updated upstream
+export default Card1;
+>>>>>>> Stashed changes
+=======
 export default Card1;
 >>>>>>> Stashed changes

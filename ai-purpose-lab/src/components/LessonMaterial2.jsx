@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import "./LessonMaterial1.css"
 
 function CoursePreviewModal({ course, onClose, onGoClick, onBackClick }) {
@@ -63,6 +64,8 @@ function CoursePreviewModal({ course, onClose, onGoClick, onBackClick }) {
 
 export default CoursePreviewModal
 =======
+=======
+>>>>>>> Stashed changes
 "use client";
 import "../pages/style/LessonMaterial1.css";
 
@@ -122,5 +125,9 @@ function CoursePreviewModal({ course, onClose, onNavigateToHome }) { // Thêm pr
     );
 }
 
+<<<<<<< Updated upstream
+export default CoursePreviewModal;
+>>>>>>> Stashed changes
+=======
 export default CoursePreviewModal;
 >>>>>>> Stashed changes
