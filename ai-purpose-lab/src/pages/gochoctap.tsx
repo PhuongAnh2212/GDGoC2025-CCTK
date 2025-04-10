@@ -1,47 +1,25 @@
-"use client"
-import "./App.css"
-import "./Card1.css"
-import { BrowserRouter as Router, Routes, Route, Link, useLocation, useNavigate } from "react-router-dom"
-import "./LessonMaterial1.css"
-import logo from "./assets/logo.svg"
-import "./style/Card1.css"
-import CoursePreviewModal from "LessonMaterial2.jsx"
-import { Fragment } from "react"
-import myImage from "./assets/huhu.png"
-import mymage from "./assets/huhu3.jpg"
-import im3 from "./assets/huhu2.png"
-import im4 from "./assets/huhu5.png"
-import im5 from "./assets/huhu6.jpg"
-import im6 from "./assets/30.jpg"
+"use client";
+import "@/components/Card1.css"
+import "../pages/style/LessonMaterial1.css";
+import "../pages/style/gochoctap.css";
+import { useState } from "react";
+import Card1 from "@/components/Card1.jsx";
+import CoursePreviewModal from "@/components/LessonMaterial2.jsx";
 
+// Images
+const myImage = "/huhu.png";
+const mymage = "/huhu3.jpg";
+const im3 = "/huhu2.png";
+const im4 = "/huhu5.png";
+const im5 = "/huhu6.jpg";
+const im6 = "/30.jpg";
+
+// Navigation bar (now blank/minimal)
 function Navigation() {
-  const location = useLocation()
-
-  return (
-    <nav className="main-nav">
-      <Link to="/" className="logo-link">
-        <div className="logo">
-          <img src={logo} alt="AI Purpose Lab Logo" />
-        </div>
-      </Link>
-      <div className="nav-links">
-        <Link to="/applications" className={`nav-link ${location.pathname === "/applications" ? "active" : ""}`}>
-          Ứng dụng
-        </Link>
-        <Link to="/research" className={`nav-link ${location.pathname === "/research" ? "active" : ""}`}>
-          Nghiên cứu
-        </Link>
-        <Link to="/goc-hoc-tap" className={`nav-link ${location.pathname === "/goc-hoc-tap" ? "active" : ""}`}>
-          Góc học tập
-        </Link>
-        <Link to="/about-us" className={`nav-link ${location.pathname === "/about-us" ? "active" : ""}`}>
-          Về chúng tôi
-        </Link>
-      </div>
-    </nav>
-  )
+  return <nav className="main-nav" />;
 }
 
+// Course data
 const courseData = [
   {
     id: "llm",
@@ -49,9 +27,8 @@ const courseData = [
     image: myImage,
     alt: "LLM visual",
     level: "Cơ bản / Nâng cao",
-    data: "Nâng cao",
     description:
-      "Khóa học này giới thiệu về các mô hình ngôn ngữ lớn (LLMs) như GPT và BERT. Nó bao gồm kiến trúc, quy trình huấn luyện, các ứng dụng và những cân nhắc về mặt đạo đức của chúng.",
+      "Khóa học này giới thiệu về các mô hình ngôn ngữ lớn (LLMs) như GPT và BERT...",
     modules: [
       "Giới thiệu về mô hình ngôn ngữ",
       "NLP là gì?",
@@ -84,7 +61,7 @@ const courseData = [
     alt: "DATA",
     level: "Cơ bản / Nâng cao",
     description:
-      "Khóa học này giúp bạn hiểu cách phân tích dữ liệu để đưa ra quyết định kinh doanh tốt hơn cho doanh nghiệp vừa và nhỏ.",
+      "Khóa học này giúp bạn hiểu cách phân tích dữ liệu để đưa ra quyết định kinh doanh tốt hơn...",
     modules: [
       "Giới thiệu về phân tích dữ liệu",
       "Thu thập và làm sạch dữ liệu",
@@ -105,7 +82,7 @@ const courseData = [
     alt: "Image Processing",
     level: "Cơ bản / Hình ảnh",
     description:
-      "Khóa học này giải thích cách các mô hình AI xử lý và hiểu dữ liệu hình ảnh, từ nhận dạng đối tượng đến phân tích nội dung.",
+      "Khóa học này giải thích cách các mô hình AI xử lý và hiểu dữ liệu hình ảnh...",
     modules: [
       "Cơ bản về xử lý hình ảnh",
       "Biểu diễn hình ảnh trong máy tính",
@@ -126,7 +103,7 @@ const courseData = [
     alt: "Request Processing",
     level: "Cơ bản / Bài tập",
     description:
-      "Khóa học này giải thích cách các mô hình AI xử lý và hiểu các yêu cầu từ người dùng, từ phân tích ngôn ngữ đến tạo ra phản hồi phù hợp.",
+      "Khóa học này giải thích cách các mô hình AI xử lý và hiểu các yêu cầu từ người dùng...",
     modules: [
       "Hiểu về xử lý yêu cầu",
       "Phân tích ngữ nghĩa",
@@ -145,7 +122,7 @@ const courseData = [
     alt: "Data Protection",
     level: "Cơ bản / Nâng cao",
     description:
-      "Khóa học này giải thích các phương pháp và kỹ thuật bảo vệ dữ liệu trong các mô hình AI, từ mã hóa đến học liên hợp.",
+      "Khóa học này giải thích các phương pháp và kỹ thuật bảo vệ dữ liệu trong các mô hình AI...",
     modules: [
       "Cơ bản về bảo mật dữ liệu",
       "Mã hóa và ẩn danh",
@@ -164,7 +141,7 @@ const courseData = [
     alt: "Keyword Explanation",
     level: "Cơ bản / Dữ liệu",
     description:
-      "Khóa học này giải thích cách các mô hình AI phân tích và hiểu các từ khóa trong tài liệu, từ trích xuất từ khóa đến phân tích ngữ nghĩa.",
+      "Khóa học này giải thích cách các mô hình AI phân tích và hiểu các từ khóa trong tài liệu...",
     modules: [
       "Cơ bản về xử lý văn bản",
       "Trích xuất từ khóa",
@@ -176,9 +153,10 @@ const courseData = [
     ],
     baseLink: "/keyword-explanation",
   },
-]
+];
 
-function GocHocTap() {
+// Home view with course cards
+function Home({ onCourseClick }: { onCourseClick: (baseLink: string) => void }) {
   return (
     <>
       <div className="hero-section">
@@ -186,61 +164,61 @@ function GocHocTap() {
       </div>
       <div className="cards-grid">
         {courseData.map((course) => (
-          <div key={course.id}>
-            <Card1
-              imagesrc={course.image}
-              alttext={course.alt}
-              title={course.title}
-              level={course.level}
-              name={course.level.split(" / ")[0]}
-              data={course.level.includes(" / ") ? course.level.split(" / ")[1] : ""}
-              baseLink={course.baseLink}
-              datalink={course.baseLink}
-            />
-          </div>
+          <Card1
+            key={course.id}
+            imagesrc={course.image}
+            alttext={course.alt}
+            title={course.title}
+            name={course.level.split(" / ")[0]}
+            data={course.level.split(" / ")[1] || ""}
+            baseLink={course.baseLink}
+            datalink={course.baseLink}
+            onClick={() => onCourseClick(course.baseLink)}
+          />
         ))}
       </div>
     </>
-  )
+  );
 }
 
-function CourseDetailRoute() {
-  const location = useLocation()
-  const pathname = location.pathname
-  const navigate = useNavigate()
-
-  const course = courseData.find((c) => c.baseLink === pathname)
-
+// Course detail component
+function CourseDetailRoute({
+  course,
+  onClose,
+}: {
+  course: any;
+  onClose: () => void;
+}) {
   if (!course) {
-    return <div>Course not found</div>
+    return <div>Course not found</div>;
   }
 
-  return <CoursePreviewModal course={course} onClose={() => navigate("/goc-hoc-tap")} />
+  return <CoursePreviewModal course={course} onClose={onClose} />;
 }
 
-function App() {
+// Main export
+export default function hoctap() {
+  const [selectedCourse, setSelectedCourse] = useState<any | null>(null);
+
+  const handleCourseClick = (baseLink: string) => {
+    const course = courseData.find((c) => c.baseLink === baseLink);
+    setSelectedCourse(course);
+  };
+
+  const handleCloseCourse = () => {
+    setSelectedCourse(null);
+  };
+
   return (
     <div className="app-container">
-      <Router>
-        <Navigation />
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={<GocHocTap />} />
-            <Route path="/goc-hoc-tap" element={<GocHocTap />} />
-            {courseData.map((course) => (
-              <Fragment key={course.id}>
-                <Route path={course.baseLink} element={<CourseDetailRoute />} />
-              </Fragment>
-            ))}
-            <Route path="/applications" element={<div>Applications Content</div>} />
-            <Route path="/research" element={<div>Research Content</div>} />
-            <Route path="/about-us" element={<div>About Us Content</div>} />
-          </Routes>
-        </main>
-      </Router>
+      <Navigation />
+      <main className="main-content">
+        {selectedCourse ? (
+          <CourseDetailRoute course={selectedCourse} onClose={handleCloseCourse} />
+        ) : (
+          <Home onCourseClick={handleCourseClick} />
+        )}
+      </main>
     </div>
-  )
+  );
 }
-
-export default App
-

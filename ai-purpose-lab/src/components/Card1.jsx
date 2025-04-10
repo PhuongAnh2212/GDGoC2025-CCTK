@@ -1,38 +1,61 @@
 "use client"
-//import {cn} from "@/lib/util"
-import "./index.css"
-import { useNavigate } from "react-router-dom"
+import "./Card1.css"
+import { useState } from "react"
 
-function Card1({ imagesrc, alttext, title, name, data, baseLink, datalink }) {
-  const navigate = useNavigate()
-
-  const handleBasicClick = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
-    navigate(baseLink)
-  }
-
-  const handleDataClick = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
-    navigate(datalink || baseLink)
-  }
+function Card1({
+  imagesrc,
+  alttext,
+  title,
+  name,
+  data,
+  baseLink,
+  datalink,
+  onBasicClick,
+  onDataClick,
+}) {
+  const [isHovered, setIsHovered] = useState(false)
 
   return (
-    <div className="course-card">
+    <div
+      className="course-card"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div className="card-image">
-        <div className="card-blur">
-        <img src={imagesrc || "/placeholder.svg"} alt={alttext} />
-      </div>
+        <div className="card-blur" onClick={onBasicClick}>
+          <img
+            src={imagesrc || "/placeholder.svg"}
+            alt={alttext}
+            className={isHovered ? "hovered" : ""}
+          />
+        </div>
       </div>
       <div className="card-content">
         <h3 className="card-title">{title}</h3>
         <div className="card-tags">
-          <span className="tag tag-basic" onClick={handleBasicClick} role="button" tabIndex={0}>
+          <span
+            className="tag tag-basic"
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              onBasicClick?.()
+            }}
+            role="button"
+            tabIndex={0}
+          >
             {name}
           </span>
           {data && (
-            <span className="tag tag-data" onClick={handleDataClick} role="button" tabIndex={0}>
+            <span
+              className="tag tag-data"
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                onDataClick?.()
+              }}
+              role="button"
+              tabIndex={0}
+            >
               {data}
             </span>
           )}
@@ -41,6 +64,4 @@ function Card1({ imagesrc, alttext, title, name, data, baseLink, datalink }) {
     </div>
   )
 }
-
 export default Card1
-

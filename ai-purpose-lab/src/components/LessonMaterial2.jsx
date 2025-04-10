@@ -1,9 +1,6 @@
-import { useNavigate } from "react-router-dom"
 import "./LessonMaterial1.css"
 
-function CoursePreviewModal({ course, onClose }) {
-  const navigate = useNavigate()
-
+function CoursePreviewModal({ course, onClose, onGoClick, onBackClick }) {
   if (!course) return null
 
   return (
@@ -13,13 +10,15 @@ function CoursePreviewModal({ course, onClose }) {
           ✕
         </button>
         <div className="llm-course-card">
-          <div className = "button-container">
-          <button onClick={() => navigate("/")} className="back-button">
-            Quay lại trang chính
-          </button>
-          <button onClick={() => navigate("")} className="go-button"> Đăng ký học </button>
+          <div className="button-container">
+            <button onClick={onBackClick} className="back-button">
+              Quay lại trang chính
+            </button>
+            <button onClick={onGoClick} className="go-button">
+              Đăng ký học
+            </button>
           </div>
-        
+
           <h2 className="course-title">{course.title}</h2>
           <img src={course.image || "/placeholder.svg"} alt={course.alt} className="course-image" />
 
