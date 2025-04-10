@@ -50,30 +50,5 @@ function Card1({ imagesrc, alttext, title, name, data, baseLink, datalink, onCli
         </div>
     );
 }
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 export default Card1;
 
-=======
-
-export default Card1;
->>>>>>> Stashed changes
-=======
-
-export default Card1;
->>>>>>> Stashed changes
-=======
-
-export default Card1;
->>>>>>> Stashed changes
-=======
-
-export default Card1;
->>>>>>> Stashed changes
-=======
-
-export default Card1;
->>>>>>> Stashed changes
