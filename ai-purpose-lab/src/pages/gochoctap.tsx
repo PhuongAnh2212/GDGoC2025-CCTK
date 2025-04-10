@@ -2,13 +2,6 @@
 import { useState } from "react";
 import Card1 from "@/components/Card1.jsx";
 import CoursePreviewModal from "@/components/LessonMaterial2.jsx";
-<<<<<<< Updated upstream
-
-=======
-import "../pages/style/Card1.css"
-import "../pages/style/LessonMaterial1.css";
-import "../pages/style/gochoctap.css";
->>>>>>> Stashed changes
 // Images
 const myImage = "/huhu.png";
 const mymage = "/huhu3.jpg";
@@ -31,11 +24,7 @@ const courseData = [
     alt: "LLM visual",
     level: "Cơ bản / Nâng cao",
     description:
-<<<<<<< Updated upstream
       "Khóa học này giới thiệu về các mô hình ngôn ngữ lớn (LLMs) như GPT và BERT...",
-=======
-      "Khóa học này giới thiệu về mô hình ngôn ngữ lớn (LLMs) như GPT và BERT. Nó bao gồm kiến trúc,quy trình huấn luyện, các ứng dụng và những cân nhắc về mặt đạo đức của chúng.",
->>>>>>> Stashed changes
     modules: [
       "Giới thiệu về mô hình ngôn ngữ",
       "NLP là gì?",
@@ -68,11 +57,7 @@ const courseData = [
     alt: "DATA",
     level: "Cơ bản / Nâng cao",
     description:
-<<<<<<< Updated upstream
       "Khóa học này giúp bạn hiểu cách phân tích dữ liệu để đưa ra quyết định kinh doanh tốt hơn...",
-=======
-      "Khóa học này giúp bạn hiểu cách phân tích dữ liệu để đưa ra quyết định kinh doanh tốt hơn cho doanh nghiệp vừa và nhỏ.",
->>>>>>> Stashed changes
     modules: [
       "Giới thiệu về phân tích dữ liệu",
       "Thu thập và làm sạch dữ liệu",
@@ -93,11 +78,7 @@ const courseData = [
     alt: "Image Processing",
     level: "Cơ bản / Hình ảnh",
     description:
-<<<<<<< Updated upstream
       "Khóa học này giải thích cách các mô hình AI xử lý và hiểu dữ liệu hình ảnh...",
-=======
-      "Khóa học này giải thích cách mô hình AI xử lý và hiểu dữ liệu hình ảnh, từ nhận dạng đối tượng đến phân tích nội dung.",
->>>>>>> Stashed changes
     modules: [
       "Cơ bản về xử lý hình ảnh",
       "Biểu diễn hình ảnh trong máy tính",
@@ -118,11 +99,7 @@ const courseData = [
     alt: "Request Processing",
     level: "Cơ bản / Bài tập",
     description:
-<<<<<<< Updated upstream
       "Khóa học này giải thích cách các mô hình AI xử lý và hiểu các yêu cầu từ người dùng...",
-=======
-      "Khóa học này giải thích cách mô hình AI xử lý và hiểu các yêu cầu từ người dùng, từ phân tích ngôn ngữ đến tạo ra phản hồi phù hợp.",
->>>>>>> Stashed changes
     modules: [
       "Hiểu về xử lý yêu cầu",
       "Phân tích ngữ nghĩa",
@@ -141,11 +118,7 @@ const courseData = [
     alt: "Data Protection",
     level: "Cơ bản / Nâng cao",
     description:
-<<<<<<< Updated upstream
       "Khóa học này giải thích các phương pháp và kỹ thuật bảo vệ dữ liệu trong các mô hình AI...",
-=======
-      "Khóa học này giải thích các phương pháp và kỹ thuật bảo vệ dữ liệu trong mô hình AI, từ mã hóa đến học liên hợp.",
->>>>>>> Stashed changes
     modules: [
       "Cơ bản về bảo mật dữ liệu",
       "Mã hóa và ẩn danh",
@@ -164,11 +137,7 @@ const courseData = [
     alt: "Keyword Explanation",
     level: "Cơ bản / Dữ liệu",
     description:
-<<<<<<< Updated upstream
       "Khóa học này giải thích cách các mô hình AI phân tích và hiểu các từ khóa trong tài liệu...",
-=======
-      "Khóa học này giải thích cách mô hình AI phân tích và hiểu các từ khóa trong tài liệu phục vụ nghiên cứu",
->>>>>>> Stashed changes
     modules: [
       "Cơ bản về xử lý văn bản",
       "Trích xuất từ khóa",

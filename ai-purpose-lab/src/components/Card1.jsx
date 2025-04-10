@@ -1,13 +1,8 @@
-<<<<<<< Updated upstream
 
 "use client"
 //import {cn} from "@/lib/util"
 import "./Card1.css"
 import { useNavigate } from "react-router-dom"
-=======
-"use client";
-import "../pages/style/Card1.css";
->>>>>>> Stashed changes
 
 function Card1({ imagesrc, alttext, title, name, data, baseLink, datalink, onClick }) {
     const handleBasicClick = (e) => {
@@ -55,10 +50,5 @@ function Card1({ imagesrc, alttext, title, name, data, baseLink, datalink, onCli
         </div>
     );
 }
-<<<<<<< Updated upstream
 export default Card1;
 
-=======
-
-export default Card1;
->>>>>>> Stashed changes
