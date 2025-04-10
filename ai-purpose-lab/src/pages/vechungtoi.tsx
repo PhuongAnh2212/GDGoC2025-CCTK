@@ -1,5 +1,5 @@
 import Image from "next/image"
-import  Logo from "public/logo.svg"
+import Logo from "public/logo.svg"
 
 import { MapPin, Mail, Phone, ArrowRight } from "lucide-react"
 
@@ -13,47 +13,50 @@ export default function Home() {
 
 function HeroSection() {
   return (
+
     <div>
       <section className="relative min-h-screen w-full overflow-hidden px-4 py-20 md:px-8 lg:px-16">
-        <div className="absolute inset-0 -z-10">
-          <Image
+        <div className="w-full max-w-[800px] mx-auto absolute inset-0 -z-15">
+          {/* <Image
             src="/images/Group 51.png"
             alt="Background"
-            width={1392}
-            height={1082}
-            className="h-full w-full object-cover"
+            width={3392}
+            height={3082}
+            className="w-full h-auto object-fill"
             priority
-          />
+          /> */}
         </div>
-<div className="mx-auto max-w-7xl px-6 md:px-12 lg:px-20">
-  <div className="mb-16 space-y-6">
-    <h1 className="text-6xl font-bold tracking-tight md:text-9xl lg:text-[10rem] leading-tight">
-      <span className="bg-gradient-to-r from-blue-700 to-blue-500 bg-clip-text text-transparent">Building</span>
-    </h1>
-    <h1 className="text-6xl font-bold tracking-tight md:text-9xl lg:text-[10rem] leading-tight">
-      <span className="bg-gradient-to-r from-blue-700 to-blue-500 bg-clip-text text-transparent">
-        Responsible AI,
-      </span>
-    </h1>
 
-    <div className="flex items-center gap-2 pt-4 pl-2 md:pl-4 lg:pl-6">
-      <p className="text-2xl text-blue-700 md:text-3xl">together, with</p>
-      <div className="flex items-center gap-2">
-        <span className="text-2xl font-semibold text-blue-700 md:text-3xl">
-          <span>AI/ Purpose</span> <span>Lab</span>
-        </span>
-      </div>
-    </div>
-  </div>
+        <div className="mx-auto max-w-10xl px-5 md:px-10 lg:px-20">
+          <div className="mb-16 space-y-6">
+            <h1 className="text-6xl font-bold tracking-tight md:text-9xl lg:text-[10rem] leading-tight">
+              <span className="bg-gradient-to-r from-blue-700 to-blue-500 bg-clip-text text-transparent">Building</span>
+            </h1>
+            <h2 className="text-3xl font-bold tracking-tight md:text-6xl lg:text-[10rem] leading-tight">
+              <span className="bg-gradient-to-r from-blue-700 to-blue-500 bg-clip-text text-transparent">
+                Responsible AI,
+              </span>
+            </h2>
 
-  <div className="relative mx-auto max-w-5xl rounded-3xl bg-white p-10 shadow-xl mt-10">
-    <div className="absolute -left-4 top-4 text-7xl font-bold text-blue-700">"</div>
-    <p className="pl-10 text-blue-700 text-lg leading-relaxed">
-      Ra đời với sứ mệnh giúp cá nhân và doanh nghiệp ứng dụng trí tuệ nhân tạo (AI) một cách hiệu quả và có trách nhiệm. Trong thời đại AI phát triển mạnh mẽ, việc triển khai các giải pháp AI không chỉ dừng lại ở công nghệ, mà còn đòi hỏi sự hiểu biết sâu sắc về quy trình, dữ liệu và tác động xã hội.
-    </p>
-    <div className="absolute -bottom-10 right-6 text-7xl font-bold text-blue-700">"</div>
-  </div>
-</div>
+            <div className="flex items-center gap-2 pt-4 pl-2 md:pl-4 lg:pl-6">
+              <p className="text-2xl text-blue-700 md:text-3xl">together, with</p>
+              <div className="flex items-center gap-2">
+                <span className="text-2xl font-semibold text-blue-700 md:text-3xl">
+                  <span>
+                    AI/ Purpose</span> <span>Lab</span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative mx-auto max-w-8xl rounded-3xl bg-white p-10 shadow-xl mt-8">
+            <div className="absolute -left-1 top-2 text-7xl font-bold text-blue-700">"</div>
+            <p className="pl-10 text-blue-700 text-lg leading-relaxed">
+              Ra đời với sứ mệnh giúp cá nhân và doanh nghiệp ứng dụng trí tuệ nhân tạo (AI) một cách hiệu quả và có trách nhiệm. Trong thời đại AI phát triển mạnh mẽ, việc triển khai các giải pháp AI không chỉ dừng lại ở công nghệ, mà còn đòi hỏi sự hiểu biết sâu sắc về quy trình, dữ liệu và tác động xã hội.
+            </p>
+            <div className="absolute -bottom-10 right-6 text-7xl font-bold text-blue-700">"</div>
+          </div>
+        </div>
 
       </section>
 
@@ -115,41 +118,65 @@ function HeroSection() {
       </section>
 
       {/* Meet Our Team - Now Fourth */}
-      <section className="container mx-auto px-4 py-16">
-        <h2 className="text-3xl md:text-4xl font-bold text-blue-600 mb-4">Gặp gỡ đội ngũ của chúng tôi</h2>
-        <p className="text-gray-600 max-w-2xl mb-12">
-          Chúng tôi không chỉ xây dựng sản phẩm, chúng tôi cùng nhau tạo nên những giá trị có ý nghĩa.
-        </p>
+      <section className="mx-auto max-w-10xl px-5 md:px-10 lg:px-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+          <div>
+            <h2 className="text-5xl font-bold mb-3">
+              <span className="bg-gradient-to-r from-blue-700 to-blue-500 bg-clip-text text-transparent">Gặp gỡ</span>
+            </h2>
+            <h2 className="text-5xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-blue-700 to-blue-500 bg-clip-text text-transparent">
+                Đội ngũ phát triển
+              </span>
+            </h2>
+            <div className="w-48 h-0.5 bg-blue-600 mb-6"></div>
+            <p className="text-gray-600 mb-12 italic">
+              Chúng tôi không chỉ xây dựng sản phẩm,
+              <br />
+              chúng tôi cùng nhau tạo nên những giá trị có ý nghĩa.
+            </p>
+          </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="relative">
+            <div className="rounded-3xl overflow-hidden shadow-2xl w-full aspect-square bg-gradient-to-b from-blue-100 to-blue-600">
+              <Image
+                src="/images/meo1.jpg"
+                alt="Phương Anh"
+                fill
+                className="object-cover mix-blend-overlay opacity-75"
+              />
+            </div>
+            <div className="absolute bottom-4 left-4">
+              <div className="inline-block bg-white rounded-full px-4 py-1 text-blue-600 font-medium">Phương Anh</div>
+              <p className="text-white text-sm mt-1">Computer Science Major</p>
+              <p className="text-white text-xs">Fulbright University Vietnam</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
           {[
             {
-              name: "Phạm Đoàn Phương Anh",
-              role: "Chuyên ngành Khoa học máy tính",
-              university: "Đại học Fulbright Việt Nam",
-              image: "/images/meo1.jpg?height=400&width=400",
+              name: "Hồng Ngọc",
+              role: "Computer Science Major",
+              university: "Fulbright University Vietnam",
+              image: "/images/meo2.jpg",
             },
             {
-              name: "Đinh Hồng Ngọc",
-              role: "Chuyên ngành Khoa học máy tính",
-              university: "Đại học Fulbright Việt Nam",
-              image: "/images/meo2.jpg?height=400&width=400",
+              name: "Thụy Khuê",
+              role: "Integrated Science Major",
+              university: "Fulbright University Vietnam",
+              image: "/images/meo3.jpg",
             },
             {
-              name: "Lê Thị Phương Quỳnh",
-              role: "Chuyên ngành Khoa học máy tính và Kỹ thuật vị Nhân sinh",
-              university: "Đại học Fulbright Việt Nam",
-              image: "/images/meo3.jpg?height=400&width=400",
-            },
-            {
-              name: "Ngô Hoàng Thụy Khuê",
-              role: "Chuyên ngành Khoa học tích hợp",
-              university: "Đại học Fulbright Việt Nam",
-              image: "/images/meo4.jpg?height=400&width=400",
+              name: "Phương Quỳnh",
+              role: "Human-centered Engineering Major",
+              university: "Fulbright University Vietnam",
+              image: "/images/meo4.jpg",
             },
           ].map((member, index) => (
             <div key={index} className="relative">
-              <div className="relative h-80 rounded-xl overflow-hidden bg-gradient-to-b from-blue-400 to-blue-600">
+              <div className="rounded-3xl overflow-hidden shadow-2xl w-full aspect-square bg-gradient-to-b from-blue-100 to-blue-600">
                 <Image
                   src={member.image || "/placeholder.svg"}
                   alt={member.name}
@@ -157,12 +184,12 @@ function HeroSection() {
                   className="object-cover mix-blend-overlay opacity-75"
                 />
               </div>
-              <div className="mt-4">
+              <div className="absolute bottom-4 left-4">
                 <div className="inline-block bg-white rounded-full px-4 py-1 text-blue-600 font-medium">
                   {member.name}
                 </div>
-                <p className="text-gray-700 mt-2">{member.role}</p>
-                <p className="text-gray-500 text-sm">{member.university}</p>
+                <p className="text-white text-sm mt-1">{member.role}</p>
+                <p className="text-white text-xs">{member.university}</p>
               </div>
             </div>
           ))}
