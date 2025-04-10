@@ -1,5 +1,9 @@
 "use client";
+<<<<<<< Updated upstream
 import "./LessonMaterial1.css"
+=======
+import "../pages/style/LessonMaterial1.css";
+>>>>>>> Stashed changes
 
 function CoursePreviewModal({ course, onClose, onNavigateToHome }) { // Thêm prop onNavigateToHome
     if (!course) return null;

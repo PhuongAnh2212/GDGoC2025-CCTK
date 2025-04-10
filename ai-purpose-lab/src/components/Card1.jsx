@@ -1,7 +1,12 @@
+<<<<<<< Updated upstream
 
 "use client"
 import "./Card1.css"
 import { useState } from "react"
+=======
+"use client";
+import "../pages/style/Card1.css";
+>>>>>>> Stashed changes
 
 function Card1({ imagesrc, alttext, title, name, data, baseLink, datalink, onClick }) {
     const handleBasicClick = (e) => {
@@ -49,5 +54,10 @@ function Card1({ imagesrc, alttext, title, name, data, baseLink, datalink, onCli
         </div>
     );
 }
+<<<<<<< Updated upstream
 export default Card1;
 
+=======
+
+export default Card1;
+>>>>>>> Stashed changes
