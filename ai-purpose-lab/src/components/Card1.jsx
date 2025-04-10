@@ -1,32 +1,8 @@
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 
 "use client"
-import "./Card1.css"
-import { useState } from "react"
-=======
-"use client";
-import "../pages/style/Card1.css";
->>>>>>> Stashed changes
-=======
-"use client";
-import "../pages/style/Card1.css";
->>>>>>> Stashed changes
-=======
-"use client";
-import "../pages/style/Card1.css";
->>>>>>> Stashed changes
-=======
-"use client";
-import "../pages/style/Card1.css";
->>>>>>> Stashed changes
-=======
-"use client";
-import "../pages/style/Card1.css";
->>>>>>> Stashed changes
+//import {cn} from "@/lib/util"
+import "./index.css"
+import { useNavigate } from "react-router-dom"
 
 function Card1({ imagesrc, alttext, title, name, data, baseLink, datalink, onClick }) {
     const handleBasicClick = (e) => {
