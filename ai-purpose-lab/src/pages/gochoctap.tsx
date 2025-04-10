@@ -3,7 +3,9 @@
 import { useState } from "react";
 import Card1 from "@/components/Card1.jsx";
 import CoursePreviewModal from "@/components/LessonMaterial2.jsx";
-
+import "@/components/Card1.css"
+import "@/components/LessonMaterial1.css"
+import "./style/gochoctap.css"
 // Images
 const myImage = "/huhu.png";
 const mymage = "/huhu3.jpg";
@@ -183,15 +185,23 @@ function Home({ onCourseClick }: { onCourseClick: (baseLink: string) => void }) 
 function CourseDetailRoute({
   course,
   onClose,
+  onNavigateToHome,
 }: {
   course: any;
   onClose: () => void;
+  onNavigateToHome: () => void;
 }) {
   if (!course) {
     return <div>Course not found</div>;
   }
 
-  return <CoursePreviewModal course={course} onClose={onClose} />;
+  return (
+    <CoursePreviewModal
+      course={course}
+      onClose={onClose}
+      onNavigateToHome={onNavigateToHome}
+    />
+  );
 }
 
 // Main export
@@ -212,7 +222,12 @@ export default function hoctap() {
       <Navigation />
       <main className="main-content">
         {selectedCourse ? (
-          <CourseDetailRoute course={selectedCourse} onClose={handleCloseCourse} />
+         <CourseDetailRoute
+         course={selectedCourse}
+         onClose={handleCloseCourse}
+         onNavigateToHome={handleCloseCourse}
+       />
+       
         ) : (
           <Home onCourseClick={handleCourseClick} />
         )}
