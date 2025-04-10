@@ -1,5 +1,8 @@
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
 "use client";
 import { useState } from "react";
 import Card1 from "@/components/Card1.jsx";
