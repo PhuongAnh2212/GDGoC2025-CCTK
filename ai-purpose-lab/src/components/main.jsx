@@ -4,7 +4,10 @@ import { createRoot } from 'react-dom/client'
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import './gochoctap.css'
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
