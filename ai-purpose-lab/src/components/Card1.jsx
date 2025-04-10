@@ -2,7 +2,6 @@
 "use client"
 //import {cn} from "@/lib/util"
 import "./Card1.css"
-import { useNavigate } from "react-router-dom"
 
 function Card1({ imagesrc, alttext, title, name, data, baseLink, datalink, onClick }) {
     const handleBasicClick = (e) => {

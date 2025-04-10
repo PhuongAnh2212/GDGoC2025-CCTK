@@ -1,6 +1,9 @@
 "use client";
 import { useState } from "react";
 import Card1 from "@/components/Card1.jsx";
+import "@/components/Card1.css"
+import "@/components/LessonMaterial1.css"
+import "./style/gochoctap.css"
 import CoursePreviewModal from "@/components/LessonMaterial2.jsx";
 // Images
 const myImage = "/huhu.png";
@@ -177,7 +180,6 @@ function Home({ onCourseClick }: { onCourseClick: (baseLink: string) => void }) 
   );
 }
 
-// Course detail component
 function CourseDetailRoute({
   course,
   onClose,
@@ -185,11 +187,15 @@ function CourseDetailRoute({
   course: any;
   onClose: () => void;
 }) {
-  if (!course) {
-    return <div>Course not found</div>;
-  }
+  if (!course) return <div>Course not found</div>;
 
-  return <CoursePreviewModal course={course} onClose={onClose} />;
+  return (
+    <CoursePreviewModal
+      course={course}
+      onClose={onClose}
+      onNavigateToHome={onClose} // Pass the onClose as back button logic
+    />
+  );
 }
 
 // Main export

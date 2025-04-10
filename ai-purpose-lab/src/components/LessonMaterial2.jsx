@@ -1,6 +1,6 @@
 "use client";
 import "./LessonMaterial1.css"
-function CoursePreviewModal({ course, onClose, onNavigateToHome }) { // Thêm prop onNavigateToHome
+function CoursePreviewModal({ course, onClose, onNavigateToHome }) { 
     if (!course) return null;
 
     return (
