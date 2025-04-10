@@ -215,9 +215,9 @@ export default function UnifiedSidebar({ content,
       )}
 
       {/* Bottom Navigation - Fixed at bottom */}
-      <div className="fixed h-30 bottom-0 border-t border-gray-300 flex shrink-0 w-64">
+      <div className="fixed bottom-0 border-t border-gray-300 flex shrink-0 w-64">
         <button
-          className={`flex-1 py-3 flex items-center justify-center gap-1 ${
+          className={`flex-1 py-2 flex items-center justify-center gap-1 ${
             activeView === "history" ? "text-white bg-blue-700 hover:bg-blue-800" : "text-blue-700 hover:bg-blue-50"
           }`}
           onClick={() => setActiveView("history")}
