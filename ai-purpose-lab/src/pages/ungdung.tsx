@@ -1,10 +1,13 @@
-
 "use client"
-import Link from "next/link"
+
 import type React from "react"
+
+import { useState, useRef, useEffect } from "react"
+import { useChat } from "ai/react"
 import {
   Database,
   Filter,
+  Menu,
   Star,
   MessageSquare,
   Settings,
@@ -14,237 +17,268 @@ import {
   PenSquare,
   AlertTriangle,
 } from "lucide-react"
-
-import { useState } from "react"
-import UnifiedSidebar from "@/components/unified-sidebar"
-import DataTable from "@/components/data-table"
-import { UploadModal } from "@/components/upload-modal"
-import Header from "@/components/Header"
 import { PenLineIcon, Share2Icon, MicIcon, SendIcon, PlusIcon } from "@/components/icons"
+import { Button } from "@/components/ui/button"
+import UnifiedSidebar from "@/components/unified-sidebar"
+import { UploadModal } from "@/components/upload-modal"
+import { SettingsModal } from "@/components/settings-modal"
+import Image from "next/image"
 
-// Message type definition
-type Message = {
-  id: string
-  content: string
-  sender: "user" | "ai"
-  timestamp: string
-}
+const pastConversations = [
+  {
+    id: "1",
+    title: "Phân tích bài báo khoa học",
+    date: "2:03 PM, 15 Nov",
+    messages: [
+      { role: "user", content: "Phân tích bài báo khoa học về nguyên tố hidro dưới đây" },
+      {
+        role: "assistant",
+        content:
+          'Bài báo khoa học "Hidro: Nguyên Tố Cơ Bản Cho Tương Lai Năng Lượng" được xuất bản trên tạp chí Nature Energy vào năm 2023, tập trung vào vai trò của hidro trong các ứng dụng năng lượng sạch. Nghiên cứu này phân tích các phương pháp sản xuất hidro, tính chất và ứng dụng trong tương lai.',
+      },
+    ],
+  },
+  {
+    id: "2",
+    title: "Mạng một chiều trong dây",
+    date: "Yesterday, 10:45 AM",
+    messages: [
+      { role: "user", content: "Giải thích về mạng một chiều trong dây" },
+      {
+        role: "assistant",
+        content:
+          "Mạng một chiều trong dây là mô hình vật lý mô tả sự lan truyền của sóng hoặc hạt trong không gian một chiều. Trong mô hình này, các hạt chỉ có thể di chuyển theo một đường thẳng, thường được biểu diễn bằng một dây hoặc một ống.",
+      },
+    ],
+  },
+  {
+    id: "3",
+    title: "Đồng vị của carbohydrate",
+    date: "Mar 12, 2023",
+    messages: [
+      { role: "user", content: "Giải thích về đồng vị của carbohydrate" },
+      {
+        role: "assistant",
+        content:
+          "Đồng vị của carbohydrate là các phân tử carbohydrate có cùng công thức phân tử nhưng khác nhau về cấu trúc không gian. Điều này dẫn đến sự khác biệt về tính chất vật lý và hóa học, ảnh hưởng đến chức năng sinh học của chúng trong cơ thể.",
+      },
+    ],
+  },
+]
+
 
 export default function Home() {
-  // State for messages and input
   const [isFirstMessage, setIsFirstMessage] = useState(true)
+  const [menuSidebarOpen, setMenuSidebarOpen] = useState(false)
+  const [hasConversationData, setHasConversationData] = useState(false)
+  const [menuSidebarContent, setMenuSidebarContent] = useState<
+    "menu" | "chat" | null
+  >(null)
+  const [showUploadModal, setShowUploadModal] = useState(false)
+  const chatContainerRef = useRef<HTMLDivElement>(null)
+  const { messages, input, handleInputChange, handleSubmit, setMessages } = useChat()
   const handleNewChat = () => {
     setMessages([])
     setIsFirstMessage(true)
-  }
-  const [showUploadModal, setShowUploadModal] = useState(false)
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: "1",
-      content: "Create any table for me with the fields of last name, first name, address, phone, and email.",
-      sender: "user",
-      timestamp: "2:03 PM, 15 Nov",
-    },
-  ])
-  const [inputValue, setInputValue] = useState("")
-
-  // Function to format current time
-  const getCurrentTime = () => {
-    const now = new Date()
-    const hours = now.getHours()
-    const minutes = now.getMinutes().toString().padStart(2, "0")
-    const ampm = hours >= 12 ? "PM" : "AM"
-    const formattedHours = hours % 12 || 12
-
-    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-    const day = now.getDate()
-    const month = months[now.getMonth()]
-    
-
-    return `${formattedHours}:${minutes} ${ampm}, ${day} ${month}`
+    setHasConversationData(false)
   }
 
-  // Function to handle sending a message
-  const handleSendMessage = () => {
-    if (inputValue.trim() === "") return
-
-    const newMessage: Message = {
-      id: Date.now().toString(),
-      content: inputValue,
-      sender: "user",
-      timestamp: getCurrentTime(),
-    }
-
-    setMessages([...messages, newMessage])
-    setInputValue("")
-
-    // Simulate AI response after a short delay
-    setTimeout(() => {
-      const aiResponse: Message = {
-        id: (Date.now() + 1).toString(),
-        content: `I'll help you with that: "${inputValue}"`,
-        sender: "ai",
-        timestamp: getCurrentTime(),
-      }
-
-      setMessages((prevMessages) => [...prevMessages, aiResponse])
-    }, 1000)
+  const loadConversation = (conversation: (typeof pastConversations)[0]) => {
+    setMessages(conversation.messages)
+    setIsFirstMessage(false)
+    setHasConversationData(true)
+    setMenuSidebarOpen(false)
   }
 
-  // Handle Enter key press
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      handleSendMessage()
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (input.trim()) {
+      setIsFirstMessage(false)
+      setHasConversationData(true)
+      handleSubmit(e)
     }
   }
-
+  const toggleMenuSidebar = (content: "menu" | "chat" | null) => {
+    if (menuSidebarContent === content && menuSidebarOpen) {
+      setMenuSidebarOpen(false)
+      setMenuSidebarContent(null)
+    } else {
+      setMenuSidebarOpen(true)
+      setMenuSidebarContent(content)
+    }
+  }
   return (
-    <div className="flex flex-col h-screen bg-white">
-      {/* Header */}
+    <div className="flex h-screen bg-gray-50">
+      {/* Toggle sidebar */}
+      <div className="fixed left-0 top-18 h-full z-10 transition-all duration-300 w-16 bg-white shadow-md flex flex-col">
+        <div className="flex flex-col items-center py-4 space-y-6 flex-1">
+          <Button
+            variant={menuSidebarContent === "menu" ? "secondary" : "ghost"}
+            size="icon"
+            onClick={() => toggleMenuSidebar("menu")}
+            className="relative"
+          >
+            <Menu className="h-5 w-5" />
+            
+          </Button>
+          <Button
+            variant={menuSidebarContent === "chat" ? "secondary" : "ghost"}
+            size="icon"
+            onClick={() => toggleMenuSidebar("chat")}
+            className="relative"
+          >
+            <MessageSquare className="h-5 w-5" />
+          </Button>
+        </div>
+      </div>
+      {/* Sidebar */}
+      {menuSidebarContent && (
+        <UnifiedSidebar 
+        content={menuSidebarContent}
+        onClose={() => setMenuSidebarOpen(false)}
+        pastConversations={pastConversations}
+        onSelectConversation={loadConversation}
+        />)
+      }
+      
+      {/* Main */}
+      <div className=" flex-1 flex flex-col transition-all duration-300 w-full">
+        {/* Chat container */}
+        <div ref={chatContainerRef} className="flex-1 overflow-y-auto p-6 pt-5 mt-16 w-full bg-gradient-to-b from-blue-50 to-white">
+        {messages.length === 0 && isFirstMessage ? (
+          <>
+            <div className="text-center mb-8 mt-8">
+              <h1 className="text-3xl font-bold text-blue-800">AI Purpose Lab</h1>
+              <p className="text-gray-500">Ver 4.0 Mar 14</p>
+            </div>  
 
-      <div className="flex flex-1 overflow-hidden">
-        {/* Sidebar */}
-        <UnifiedSidebar />
-
-        {/* Main Content */}
-        <div className="flex-1 flex flex-col overflow-hidden">
-          <main className="flex-1 overflow-y-auto bg-gradient-to-b from-blue-50/80 to-white">
-            <div className="max-w-4xl mx-auto px-4 py-6">
-              {/* Messages */}
-              {messages.length === 0 && isFirstMessage ? (
-            <>
-              <div className="text-center mb-8 mt-8">
-                <h1 className="text-3xl font-bold text-blue-800">AI Purpose Lab</h1>
-                <p className="text-gray-500">Ver 4.0 Mar 14</p>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+              <div className="bg-white p-8 rounded-lg border border-blue-200 shadow-sm">
+                <div className="flex justify-center mb-2">
+                  <PenSquare className="h-6 w-6 text-blue-600" />
+                </div>
+                <h3 className="font-bold text-center mb-4 text-blue-900">Ví dụ</h3>
+                <p className="text-sm text-blue-600 hover:underline">Giải thích và mấy tính lượng từ bảng đồ họa →</p>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
-                <div className="bg-white p-4 rounded-lg border shadow-sm">
-                  <div className="flex justify-center mb-2">
-                    <PenSquare className="h-6 w-6 text-blue-600" />
-                  </div>
-                  <h3 className="font-medium text-center mb-4">Ví dụ</h3>
-                  <p className="text-sm text-blue-600 hover:underline">Giải thích và mấy tính lượng từ bảng đồ họa →</p>
+              <div className="bg-white p-8 rounded-lg border border-blue-200 shadow-sm">
+                <div className="flex justify-center mb-2">
+                  <Star className="h-6 w-6 text-blue-600" />
                 </div>
-
-                <div className="bg-white p-4 rounded-lg border shadow-sm">
-                  <div className="flex justify-center mb-2">
-                    <Star className="h-6 w-6 text-blue-600" />
-                  </div>
-                  <h3 className="font-medium text-center mb-4">Khả năng</h3>
-                  <p className="text-sm">Ghi nhớ nội dung cuộc trò chuyện trong lịch sử</p>
-                </div>
-
-                <div className="bg-white p-4 rounded-lg border shadow-sm">
-                  <div className="flex justify-center mb-2">
-                    <AlertTriangle className="h-6 w-6 text-blue-600" />
-                  </div>
-                  <h3 className="font-medium text-center mb-4">Giới hạn</h3>
-                  <p className="text-sm">Chỉ tạo ra thông tin dựa trên data của người dùng</p>
-                </div>
-
-                <div className="bg-white p-4 rounded-lg border shadow-sm">
-                  <p className="text-sm">Mạng một chiều trong dây</p>
-                </div>
-
-                <div className="bg-white p-4 rounded-lg border shadow-sm">
-                  <p className="text-sm">
-                    Cho phép người dùng đánh giá từng bước mô hình đang được luyện tập trên data
-                  </p>
-                </div>
-
-                <div className="bg-white p-4 rounded-lg border shadow-sm">
-                  <p className="text-sm">Mô hình và data quá lớn có thể quá tải server</p>
-                </div>
-
-                <div className="bg-white p-4 rounded-lg border shadow-sm">
-                  <p className="text-sm">Đồng vị của carbohydrate</p>
-                </div>
-
-                <div className="bg-white p-4 rounded-lg border shadow-sm">
-                  <p className="text-sm">Loại bỏ các yêu cầu phi pháp, không đạo đức</p>
-                </div>
-
-                <div className="bg-white p-4 rounded-lg border shadow-sm">
-                  <p className="text-sm">Giới hạn nhận biết, thông tin sau năm 2024</p>
-                </div>
+                <h3 className="font-bold text-center mb-4 text-blue-900">Khả năng</h3>
+                <p className="text-sm">Ghi nhớ nội dung cuộc trò chuyện trong lịch sử</p>
               </div>
-            </>
-          ) : (messages.map((message) => (
-                <div key={message.id} className="mb-6">
-                  {message.sender === "user" ? (
-                    <div className="flex items-start gap-2">
-                      <div className="flex-1">
-                        <p className="text-gray-700">{message.content}</p>
-                      </div>
-                      <div className="flex gap-2">
-                        <button className="text-gray-500 hover:text-gray-700">
-                          <PenLineIcon width={20} height={20} />
-                        </button>
-                        <button className="text-gray-500 hover:text-gray-700">
-                          <Share2Icon width={20} height={20} />
-                        </button>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="flex gap-3">
-                      <div className="flex-shrink-0 w-8 h-8 bg-blue-700 flex items-center justify-center rounded-sm">
-                        <div className="text-white text-xs font-bold">AI</div>
-                      </div>
-                      <div className="flex-1">
-                        <div className="font-bold mb-1">{message.timestamp}</div>
-                        <p className="text-gray-700 mb-2">{message.content}</p>
-                        {message.id === "1" && <DataTable />}
-                      </div>
+
+              <div className="bg-white p-8 rounded-lg border border-blue-200 shadow-sm">
+                <div className="flex justify-center mb-2">
+                  <AlertTriangle className="h-6 w-6 text-blue-600" />
+                </div>
+                <h3 className="font-bold text-center mb-4 text-blue-900">Giới hạn</h3>
+                <p className="text-sm">Chỉ tạo ra thông tin dựa trên data của người dùng</p>
+              </div>
+
+              <div className="bg-white p-8 rounded-lg border border-blue-200 shadow-sm">
+                <p className="text-sm">Mạng một chiều trong dây</p>
+              </div>
+
+              <div className="bg-white p-8 rounded-lg border border-blue-200 shadow-sm">
+                <p className="text-sm">
+                  Cho phép người dùng đánh giá từng bước mô hình đang được luyện tập trên data
+                </p>
+              </div>
+
+              <div className="bg-white p-8 rounded-lg border border-blue-200 shadow-sm">
+                <p className="text-sm">Mô hình và data quá lớn có thể quá tải server</p>
+              </div>
+
+              <div className="bg-white p-8 rounded-lg border border-blue-200 shadow-sm">
+                <p className="text-sm">Đồng vị của carbohydrate</p>
+              </div>
+
+              <div className="bg-white p-8 rounded-lg border border-blue-200 shadow-sm">
+                <p className="text-sm">Loại bỏ các yêu cầu phi pháp, không đạo đức</p>
+              </div>
+
+              <div className="bg-white p-8 rounded-lg border border-blue-200 shadow-sm">
+                <p className="text-sm">Giới hạn nhận biết, thông tin sau năm 2024</p>
+              </div>
+            </div>
+          </>
+        )
+        : (<div className="max-w-4xl mx-auto">
+            {messages.map((message, index) => (
+              <div key={index} className={`mb-6 ${message.role === "user" ? "text-right" : ""}`}>
+                <div
+                  className={`inline-block max-w-[80%] p-4 rounded-lg ${
+                    message.role === "user" ? "bg-blue-600 text-white" : "bg-white border shadow-sm"
+                  }`}
+                >
+                  {message.content}
+                  {message.role === "assistant" && message.content.includes("Hidro") && (
+                    <div className="mt-2 p-2 bg-gray-50 rounded text-sm">
+                      <p className="font-medium">Hidro: Nguyên Tố Cơ Bản Cho Tương Lai Năng Lượng.pdf</p>
+                      <p className="text-xs text-gray-500">Nature Energy (2023)</p>
                     </div>
                   )}
                 </div>
-              )))}
-
-              {/* Timestamp at the end */}
-              <div className="flex justify-end mb-4 text-sm text-gray-500">{getCurrentTime()}</div>
-            </div>
-          </main>
-
-          {/* Input Area */}
-          <div className="border-t p-4">
-            <div className="max-w-4xl mx-auto flex items-center gap-2">
-              <button className="p-2 rounded-full hover:bg-gray-100">
-                <PlusIcon width={20} height={20} className="text-blue-600" 
-                onClick={() => setShowUploadModal(true)}/>
-              </button>
-              <div className="flex-1 relative">
-                <button
-                  className="absolute left-4 top-1/2 -translate-y-1/2 text-blue-600 p-1 rounded-full hover:bg-blue-50"
-                  onClick={handleSendMessage}
-                >
-                  <SendIcon width={18} height={18} />
-                </button>
-                <input
-                  type="text"
-                  placeholder="Gửi yêu cầu"
-                  className="w-full pl-12 pr-12 py-3 border rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  onKeyPress={handleKeyPress}
-                />
-                <div className="absolute right-2 top-1/2 -translate-y-1/2 flex gap-1">
-                  <button className="p-1 text-gray-500 hover:text-gray-700">
-                    <MicIcon width={18} height={18} />
-                  </button>
-                </div>
+                {message.role === "assistant" && index === messages.length - 1 && (
+                  <div className="mt-4 flex bottom-0">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="text-blue-600 border-blue-200"
+                      onClick={handleNewChat}
+                    >
+                      <MessageSquare className="h-4 w-4 mr-2" />
+                      Hội thoại mới
+                    </Button>
+                  </div>
+                )}
               </div>
-              <button className="flex items-center gap-1 bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700">
-                <PlusIcon width={16} height={16} />
-                <span>Hội thoại mới</span>
-              </button>
-            </div>
-          </div>
-          {showUploadModal && <UploadModal onClose={() => setShowUploadModal(false)} />}
+            ))}
+          </div>)}
         </div>
       </div>
+      {/* Input area */}
+      <div className="fixed bottom-0 left-0 ml-18 w-full border-t bg-white p-4">
+        <form onSubmit={onSubmit} className="max-w-4xl mx-auto flex gap-2 px-4">
+          <Button
+            type="button"
+            variant="outline"
+            size="icon"
+            onClick={() => setShowUploadModal(true)}
+            className="shrink-0"
+          >
+            <Upload className="h-5 w-5" />
+          </Button>
+
+          <div className="flex-1 relative w-60">
+            <input
+              type="text"
+              value={input}
+              onChange={handleInputChange}
+              placeholder="Gửi yêu cầu..."
+              className="w-full px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <Button
+            type="submit"
+            size="icon"
+            className="shrink-0 bg-blue-600 hover:bg-blue-700"
+            disabled={!input.trim()}
+          >
+            <Send className="h-5 w-5 color-white" />
+          </Button>
+
+          <Button type="button" variant="ghost" size="icon" className="shrink-0">
+            <Mic className="h-5 w-5" />
+          </Button>
+        </form>
+      </div>
+
+      {/* Upload Modal */}
+      {showUploadModal && <UploadModal onClose={() => setShowUploadModal(false)} />}
     </div>
   )
 }
-
-
