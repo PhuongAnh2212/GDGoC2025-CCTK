@@ -1,0 +1,54 @@
+/* Hero section styles */
+.hero-section {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 4rem 1rem;
+  }
+  
+  .hero-content {
+    max-width: 48rem;
+  }
+  
+  .hero-title {
+    font-size: 3.75rem;
+    font-weight: 700;
+    color: #0047ab;
+    line-height: 1.2;
+  }
+  
+  .hero-subtitle {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  
+  .hero-subtitle span {
+    margin-right: 1rem;
+  }
+  
+  .hero-logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .hero-logo-triangle {
+    height: 2.5rem;
+    width: 2.5rem;
+    background-color: #0047ab;
+    position: relative;
+  }
+  
+  .hero-logo-triangle-corner {
+    position: absolute;
+    top: -0.25rem;
+    right: -0.25rem;
+    border-top: 0.625rem solid transparent;
+    border-right: 0.625rem solid white;
+  }
+  
+  .hero-logo-text {
+    margin-left: 0.5rem;
+    font-weight: bold;
+    color: #0047ab;
+  }
+  

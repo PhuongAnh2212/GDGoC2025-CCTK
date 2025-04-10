@@ -1,0 +1,36 @@
+/* Quote box styles */
+.quote-box {
+    position: relative;
+    background-color: white;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    margin-top: 4rem;
+    max-width: 48rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .quote-mark-left {
+    position: absolute;
+    top: -1rem;
+    left: 2rem;
+    color: #0047ab;
+    font-size: 3rem;
+    font-family: serif;
+  }
+  
+  .quote-mark-right {
+    position: absolute;
+    bottom: -2rem;
+    right: 2rem;
+    color: #0047ab;
+    font-size: 3rem;
+    font-family: serif;
+  }
+  
+  .quote-text {
+    color: #4b5563;
+    padding: 0 1.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  
