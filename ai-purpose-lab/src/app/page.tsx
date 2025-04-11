@@ -1,16 +1,38 @@
 // pages/index.tsx
-import React from 'react';
+"use client";
+import React, { useState } from 'react';
 import Header from '@/components/Header';
-const HomePage = () => {
-  return (
+import Home from '../pages/ungdung';
 
-    <><Header /><div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold text-center mb-4">Welcome to MyApp</h1>
-      <p className="text-lg text-gray-700">
-        This is the homepage of your app.
-      </p>
-    </div></>
-  );
+
+const HomePage = () => {
+  const [currentView, setCurrentView] = useState("home");
+
+  return (
+    <>
+      <div className="fixed top-0 left-0 w-full z-50">
+        <Header setCurrentView={setCurrentView} currentView={currentView} />
+      </div>
+      {currentView === "home" ? (
+        <div className="container mx-auto p-4">
+          <h1 className="text-3xl font-bold text-center mb-4">Welcome to MyApp</h1>
+          <p className="text-lg text-gray-700">This is the homepage of your app.</p>
+        </div>
+      ) : currentView === "ungdung" ? (
+        <Home />
+      ) : null}
+    </>
+  )
+
+  // return (
+  //   <><Header />
+  //   <div className="container mx-auto p-4">
+  //     <h1 className="text-3xl font-bold text-center mb-4">Welcome to MyApp</h1>
+  //     <p className="text-lg text-gray-700">
+  //       This is the homepage of your app.
+  //     </p>
+  //   </div></>
+  // );
 };
 
 export default HomePage;
