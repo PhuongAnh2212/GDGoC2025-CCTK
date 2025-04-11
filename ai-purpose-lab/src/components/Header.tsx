@@ -31,7 +31,7 @@ export default function Header({ setCurrentView, currentView }: HeaderProps) {
         <nav className="space-x-8">
           <Link
             onClick={handleUngDungClick}
-            href="/"
+            href="/ungdung"
             className={`text-gray-700 inline-flex items-center px-4 py-2 hover:bg-blue-100 hover:rounded-full hover:text-blue-600 hover:font-bold transition-all duration-200 font-poppins "
             }`}
           >
