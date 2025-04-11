@@ -240,16 +240,16 @@ export default function Home() {
         </div>
       </div>
       {/* Input area */}
-      <div className="fixed bottom-0 left-0 ml-18 w-full border-t bg-white p-4">
+      <div className="fixed bottom-0 left-0 ml-18 w-full border-t border-gray-300 bg-white p-4">
         <form onSubmit={onSubmit} className="max-w-4xl mx-auto flex gap-2 px-4">
           <Button
             type="button"
             variant="outline"
             size="icon"
             onClick={() => setShowUploadModal(true)}
-            className="shrink-0"
+            className="shrink-0 border border-gray-300 bg-white-600 hover:bg-gray-300"
           >
-            <Upload className="h-5 w-5" />
+            <Upload className="color-white h-5 w-5" />
           </Button>
 
           <div className="flex-1 relative w-60">
@@ -258,14 +258,22 @@ export default function Home() {
               value={input}
               onChange={handleInputChange}
               placeholder="Gửi yêu cầu..."
-              className="w-full px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              className="absolute right-2 top-1/2 transform -translate-y-1/2"
+            >
+              <Mic className="h-5 w-5" />
+            </Button>
           </div>
 
           <Button
             type="submit"
             size="icon"
-            className="shrink-0 bg-blue-600 hover:bg-blue-700"
+            className="shrink-0 bg-blue-100 hover:bg-blue-400"
             disabled={!input.trim()}
           >
             <Send className="h-5 w-5 color-white" />

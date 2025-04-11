@@ -315,15 +315,15 @@ export default function Home() {
 
         {/* Chat Input */}
         {/* flex-1 overflow-y-auto p-6 bg-gradient-to-b from-blue-50 to-white */}
-        <div className="fixed bottom-0 ml-9 left-0 w-[80%] border-t bg-white p-4">
+        <div className="fixed bottom-0 ml-9 left-0 w-[80%] border-t border-gray-300 bg-white p-4">
           <form onSubmit={onSubmit} className="max-w-4xl mx-auto flex gap-2">
             <Button
               type="button"
               variant="outline"
               size="icon"
               onClick={() => setShowUploadModal(true)}
-              className="shrink-0"
-            >
+              className="shrink-0 border border-gray-300 bg-white-600 hover:bg-gray-300"
+              >
               <Upload className="h-5 w-5" />
             </Button>
 
@@ -333,21 +333,25 @@ export default function Home() {
                 value={input}
                 onChange={handleInputChange}
                 placeholder="Gửi yêu cầu..."
-                className="w-full px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="absolute right-2 top-1/2 transform -translate-y-1/2"
+              >
+                <Mic className="h-5 w-5" />
+              </Button>
             </div>
 
             <Button
               type="submit"
               size="icon"
-              className="shrink-0 bg-blue-600 hover:bg-blue-700"
+              className="shrink-0 bg-blue-100 hover:bg-blue-400"
               disabled={!input.trim()}
             >
               <Send className="h-5 w-5 color-white" />
-            </Button>
-
-            <Button type="button" variant="ghost" size="icon" className="shrink-0">
-              <Mic className="h-5 w-5" />
             </Button>
           </form>
         </div>
