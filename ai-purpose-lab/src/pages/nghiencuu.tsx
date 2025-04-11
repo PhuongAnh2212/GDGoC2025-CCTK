@@ -24,7 +24,6 @@ import { UploadModal } from "@/components/upload-modal"
 import { SettingsModal } from "@/components/settings-modal"
 import Image from "next/image"
 
-// Sample data for past conversations
 const pastConversations = [
   {
     id: "1",
@@ -348,7 +347,7 @@ export default function Home() {
             <Button
               type="submit"
               size="icon"
-              className="shrink-0 bg-blue-100 hover:bg-blue-400"
+              className="shrink-0 bg-blue-800 hover:bg-blue-700 text-white transition-colors duration-200"
               disabled={!input.trim()}
             >
               <Send className="h-5 w-5 color-white" />
@@ -356,7 +355,6 @@ export default function Home() {
           </form>
         </div>
       </div>
-      {/* Settings Modal */}
       {showSettingsModal && (
         <SettingsModal
           onClose={() => {
@@ -365,12 +363,9 @@ export default function Home() {
           }}
         />
       )}
-      {/* Right Sidebar */}
       <RightSidebar hasData={hasConversationData} />
 
-      {/* Upload Modal */}
       {showUploadModal && <UploadModal onClose={() => setShowUploadModal(false)} />}
-
       
     </div>
   )

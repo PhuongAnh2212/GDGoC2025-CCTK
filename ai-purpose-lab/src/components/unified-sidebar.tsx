@@ -46,12 +46,12 @@ export default function UnifiedSidebar({ content,
       <>
       {activeView === "mode" && (
         <div className="p-4 flex-grow overflow-y-auto">
-          <h2 className="text-lg font-medium mb-2">Chế độ</h2>
+          <h2 className="text-lg font-semibold mb-2 text-blue-800">Chế độ</h2>
           
 
           {/* Creative Mode */}
           <div className="mb-4">
-            <label className="flex items-start gap-2 p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+            <label className="flex items-start gap-2 p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50">
               <input type="radio" name="mode" className="mt-1" />
               <div>
                 <div className="font-medium">Sáng tạo</div>
@@ -65,7 +65,7 @@ export default function UnifiedSidebar({ content,
 
           {/* Default Mode */}
           <div className="mb-4">
-            <label className="flex items-start gap-2 p-3 border rounded-lg cursor-pointer bg-blue-50 border-blue-200">
+            <label className="flex items-start gap-2 p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50">
               <input type="radio" name="mode" className="mt-1" defaultChecked />
               <div>
                 <div className="font-medium">Mặc định</div>
@@ -78,7 +78,7 @@ export default function UnifiedSidebar({ content,
 
           {/* Strict Mode */}
           <div className="mb-4">
-            <label className="flex items-start gap-2 p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+            <label className="flex items-start gap-2 p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50">
               <input type="radio" name="mode" className="mt-1" />
               <div>
                 <div className="font-medium">Lập luận chặt chẽ</div>

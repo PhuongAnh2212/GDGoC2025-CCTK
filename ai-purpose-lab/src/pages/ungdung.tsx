@@ -239,8 +239,10 @@ export default function Home() {
           </div>)}
         </div>
       </div>
+
+
       {/* Input area */}
-      <div className="fixed bottom-0 left-0 ml-18 w-full border-t border-gray-300 bg-white p-4">
+      <div className="fixed bottom-0 left-0 w-full border-t border-gray-300 bg-white p-4">
         <form onSubmit={onSubmit} className="max-w-4xl mx-auto flex gap-2 px-4">
           <Button
             type="button"
@@ -273,15 +275,15 @@ export default function Home() {
           <Button
             type="submit"
             size="icon"
-            className="shrink-0 bg-blue-100 hover:bg-blue-400"
+            className="shrink-0 bg-blue-800 hover:bg-blue-700 text-white transition-colors duration-200"
             disabled={!input.trim()}
           >
             <Send className="h-5 w-5 color-white" />
           </Button>
 
-          <Button type="button" variant="ghost" size="icon" className="shrink-0">
+          {/* <Button type="button" variant="ghost" size="icon" className="shrink-0">
             <Mic className="h-5 w-5" />
-          </Button>
+          </Button> */}
         </form>
       </div>
 
