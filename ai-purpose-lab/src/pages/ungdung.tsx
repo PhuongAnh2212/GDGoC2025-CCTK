@@ -144,7 +144,7 @@ export default function Home() {
       {/* Main */}
       <div className=" flex-1 flex flex-col transition-all duration-300 w-full">
         {/* Chat container */}
-        <div ref={chatContainerRef} className="flex-1 overflow-y-auto p-6 pt-5 mt-16 w-full bg-gradient-to-b from-blue-50 to-white">
+        <div ref={chatContainerRef} className="flex-1 overflow-y-auto p-6 pt-5 w-full bg-gradient-to-b from-blue-50 to-white">
         {messages.length === 0 && isFirstMessage ? (
           <>
             <div className="text-center mb-8 mt-8">

@@ -6,7 +6,7 @@ import CoursePreviewModal from "@/components/LessonMaterial2.jsx";
 import "@/components/Card1.css"
 import "@/components/LessonMaterial1.css"
 import "./style/gochoctap.css"
-// Images
+
 const myImage = "/huhu.png";
 const mymage = "/huhu3.jpg";
 const im3 = "/huhu2.png";
@@ -14,12 +14,6 @@ const im4 = "/huhu5.png";
 const im5 = "/huhu6.jpg";
 const im6 = "/30.jpg";
 
-// Navigation bar (now blank/minimal)
-function Navigation() {
-  return <nav className="main-nav" />;
-}
-
-// Course data
 const courseData = [
   {
     id: "llm",
@@ -155,11 +149,11 @@ const courseData = [
   },
 ];
 
-// Home view with course cards
+
 function Home({ onCourseClick }: { onCourseClick: (baseLink: string) => void }) {
   return (
     <>
-      <div className="hero-section">
+      <div className="hero-section mt-8">
         <h1>Học gì với AI Purpose Lab?</h1>
       </div>
       <div className="cards-grid">
@@ -181,7 +175,6 @@ function Home({ onCourseClick }: { onCourseClick: (baseLink: string) => void }) 
   );
 }
 
-// Course detail component
 function CourseDetailRoute({
   course,
   onClose,
@@ -219,7 +212,6 @@ export default function hoctap() {
 
   return (
     <div className="app-container">
-      <Navigation />
       <main className="main-content">
         {selectedCourse ? (
          <CourseDetailRoute

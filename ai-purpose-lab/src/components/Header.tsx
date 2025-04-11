@@ -1,4 +1,3 @@
-// components/Header.js
 'use client';
 import Link from 'next/link';
 import Logo from './Logo';

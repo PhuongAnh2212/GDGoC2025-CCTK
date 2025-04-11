@@ -1,19 +1,17 @@
-
 "use client"
-//import {cn} from "@/lib/util"
 import "./Card1.css"
 
 function Card1({ imagesrc, alttext, title, name, data, baseLink, datalink, onClick }) {
     const handleBasicClick = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        onClick(baseLink); // Sử dụng onClick prop
+        onClick(baseLink);
     };
 
     const handleDataClick = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        onClick(datalink || baseLink); // Sử dụng onClick prop
+        onClick(datalink || baseLink);
     };
 
     return (
