@@ -1,0 +1,71 @@
+/* Services section styles */
+.services-section {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 4rem 1rem;
+  }
+  
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  
+  @media (min-width: 768px) {
+    .services-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  .service-card {
+    background-color: white;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .service-icon {
+    color: #0047ab;
+    margin-bottom: 1rem;
+  }
+  
+  .service-icon-circle {
+    width: 3rem;
+    height: 3rem;
+    background-color: #0047ab;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .service-icon-inner {
+    width: 1rem;
+    height: 1rem;
+    background-color: white;
+    border-radius: 9999px;
+  }
+  
+  .service-title {
+    color: #0047ab;
+    font-weight: 600;
+    text-align: center;
+    font-size: 0.875rem;
+  }
+  
+  .service-list {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    color: #4b5563;
+  }
+  
+  .service-list li {
+    margin-bottom: 0.5rem;
+  }
+  
