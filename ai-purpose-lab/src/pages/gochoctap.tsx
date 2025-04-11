@@ -1,22 +1,24 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import Card1 from "@/components/Card1.jsx";
-import CoursePreviewModal from "@/components/LessonMaterial2.jsx";
-import "@/components/Card1.css"
-import "@/components/LessonMaterial1.css"
+import { useState } from "react"
+import { ChevronRight } from "lucide-react"
+import Link from "next/link"
+import CoursePreviewModal from "@/components/CoursePreviewModal"
+import CourseCategory from "@/components/CourseCategory"
 import "./style/gochoctap.css"
-// Images
-const myImage = "/huhu.png";
-const mymage = "/huhu3.jpg";
-const im3 = "/huhu2.png";
-const im4 = "/huhu5.png";
-const im5 = "/huhu6.jpg";
-const im6 = "/30.jpg";
 
-// Navigation bar (now blank/minimal)
+// Images - using placeholder images for now
+const myImage = "/huhu.png?height=400&width=600"
+const mymage = "/huhu2.png?height=400&width=600"
+const im3 = "/huhu3.png?height=400&width=600"
+const im4 = "/huhu5.png?height=400&width=600"
+const im5 = "/huhu5.png?height=400&width=600"
+const im6 = "/30.png.svg?height=400&width=600"
+
+// Navigation bar
 function Navigation() {
-  return <nav className="main-nav" />;
+  return (
+  )
 }
 
 // Course data
@@ -26,9 +28,12 @@ const courseData = [
     title: "Mô hình ngôn ngữ lớn là gì? (LLM)",
     image: myImage,
     alt: "LLM visual",
-    level: "Cơ bản / Nâng cao",
-    description:
-      "Khóa học này giới thiệu về các mô hình ngôn ngữ lớn (LLMs) như GPT và BERT...",
+    level: "Cơ bản",
+    category: "AI Fundamentals",
+    description: "Khóa học này giới thiệu về các mô hình ngôn ngữ lớn (LLMs) như GPT và BERT...",
+    instructor: "Andrew Ng",
+    isNew: true,
+    credential: "Professional Certificate",
     modules: [
       "Giới thiệu về mô hình ngôn ngữ",
       "NLP là gì?",
@@ -59,9 +64,12 @@ const courseData = [
     title: "Phân tích dữ liệu cho doanh nghiệp vừa và nhỏ",
     image: mymage,
     alt: "DATA",
-    level: "Cơ bản / Nâng cao",
-    description:
-      "Khóa học này giúp bạn hiểu cách phân tích dữ liệu để đưa ra quyết định kinh doanh tốt hơn...",
+    level: "Cơ bản",
+    category: "Data Science",
+    isNew: false,
+    credential: "Course",
+    instructor: "Andrew Ng",
+    description: "Khóa học này giúp bạn hiểu cách phân tích dữ liệu để đưa ra quyết định kinh doanh tốt hơn...",
     modules: [
       "Giới thiệu về phân tích dữ liệu",
       "Thu thập và làm sạch dữ liệu",
@@ -80,9 +88,12 @@ const courseData = [
     title: "Data hình ảnh được mô hình xử lý như thế nào?",
     image: im3,
     alt: "Image Processing",
-    level: "Cơ bản / Hình ảnh",
-    description:
-      "Khóa học này giải thích cách các mô hình AI xử lý và hiểu dữ liệu hình ảnh...",
+    level: "Cơ bản",
+    category: "Computer Vision",
+    isNew: true,
+    credential: "Professional Certificate",
+    instructor: "Andrew Ng",
+    description: "Khóa học này giải thích cách các mô hình AI xử lý và hiểu dữ liệu hình ảnh...",
     modules: [
       "Cơ bản về xử lý hình ảnh",
       "Biểu diễn hình ảnh trong máy tính",
@@ -101,9 +112,12 @@ const courseData = [
     title: "Mô hình xử lý yêu cầu như thế nào?",
     image: im4,
     alt: "Request Processing",
-    level: "Cơ bản / Bài tập",
-    description:
-      "Khóa học này giải thích cách các mô hình AI xử lý và hiểu các yêu cầu từ người dùng...",
+    level: "Cơ bản",
+    category: "AI Fundamentals",
+    isNew: false,
+    credential: "Course",
+    instructor: "Andrew Ng",
+    description: "Khóa học này giải thích cách các mô hình AI xử lý và hiểu các yêu cầu từ người dùng...",
     modules: [
       "Hiểu về xử lý yêu cầu",
       "Phân tích ngữ nghĩa",
@@ -120,9 +134,12 @@ const courseData = [
     title: "Dữ liệu được mô hình bảo vệ như thế nào?",
     image: im5,
     alt: "Data Protection",
-    level: "Cơ bản / Nâng cao",
-    description:
-      "Khóa học này giải thích các phương pháp và kỹ thuật bảo vệ dữ liệu trong các mô hình AI...",
+    level: "Nâng cao",
+    category: "Data Science",
+    isNew: true,
+    credential: "Professional Certificate",
+    instructor: "Andrew Ng",
+    description: "Khóa học này giải thích các phương pháp và kỹ thuật bảo vệ dữ liệu trong các mô hình AI...",
     modules: [
       "Cơ bản về bảo mật dữ liệu",
       "Mã hóa và ẩn danh",
@@ -139,9 +156,12 @@ const courseData = [
     title: "Mô hình giải thích từ khóa tài liệu như thế nào?",
     image: im6,
     alt: "Keyword Explanation",
-    level: "Cơ bản / Dữ liệu",
-    description:
-      "Khóa học này giải thích cách các mô hình AI phân tích và hiểu các từ khóa trong tài liệu...",
+    level: "Nâng cao",
+    category: "Computer Vision",
+    isNew: false,
+    credential: "Course",
+    instructor: "Andrew Ng",
+    description: "Khóa học này giải thích cách các mô hình AI phân tích và hiểu các từ khóa trong tài liệu...",
     modules: [
       "Cơ bản về xử lý văn bản",
       "Trích xuất từ khóa",
@@ -153,85 +173,57 @@ const courseData = [
     ],
     baseLink: "/keyword-explanation",
   },
-];
+]
 
-// Home view with course cards
-function Home({ onCourseClick }: { onCourseClick: (baseLink: string) => void }) {
+// Group courses by category
+const groupedCourses = courseData.reduce((acc, course) => {
+  if (!acc[course.category]) {
+    acc[course.category] = []
+  }
+  acc[course.category].push(course)
+  return acc
+}, {})
+
+// Home view with categorized courses
+function Home({ onCourseClick }) {
   return (
     <>
       <div className="hero-section">
         <h1>Học gì với AI Purpose Lab?</h1>
+        <p className="hero-subtitle">Explore our courses by category</p>
       </div>
-      <div className="cards-grid">
-        {courseData.map((course) => (
-          <Card1
-            key={course.id}
-            imagesrc={course.image}
-            alttext={course.alt}
-            title={course.title}
-            name={course.level.split(" / ")[0]}
-            data={course.level.split(" / ")[1] || ""}
-            baseLink={course.baseLink}
-            datalink={course.baseLink}
-            onClick={() => onCourseClick(course.baseLink)}
-          />
-        ))}
-      </div>
+
+      {Object.entries(groupedCourses).map(([category, courses]) => (
+        <CourseCategory key={category} title={category} courses={courses} onCourseClick={onCourseClick} />
+      ))}
     </>
-  );
+  )
 }
 
-// Course detail component
-function CourseDetailRoute({
-  course,
-  onClose,
-  onNavigateToHome,
-}: {
-  course: any;
-  onClose: () => void;
-  onNavigateToHome: () => void;
-}) {
-  if (!course) {
-    return <div>Course not found</div>;
+export default function HomePage() {
+  const [selectedCourse, setSelectedCourse] = useState(null)
+
+  const handleCourseClick = (courseId) => {
+    const course = courseData.find((c) => c.id === courseId)
+    setSelectedCourse(course)
+  }
+
+  const handleCloseCourse = () => {
+    setSelectedCourse(null)
   }
 
   return (
-    <CoursePreviewModal
-      course={course}
-      onClose={onClose}
-      onNavigateToHome={onNavigateToHome}
-    />
-  );
-}
-
-// Main export
-export default function hoctap() {
-  const [selectedCourse, setSelectedCourse] = useState<any | null>(null);
-
-  const handleCourseClick = (baseLink: string) => {
-    const course = courseData.find((c) => c.baseLink === baseLink);
-    setSelectedCourse(course);
-  };
-
-  const handleCloseCourse = () => {
-    setSelectedCourse(null);
-  };
-
-  return (
     <div className="app-container">
-      <Navigation />
-      <main className="main-content">
-        {selectedCourse ? (
-         <CourseDetailRoute
-         course={selectedCourse}
-         onClose={handleCloseCourse}
-         onNavigateToHome={handleCloseCourse}
-       />
-       
-        ) : (
-          <Home onCourseClick={handleCourseClick} />
-        )}
-      </main>
+      {!selectedCourse ? (
+        <>
+          <Navigation />
+          <main className="main-content">
+            <Home onCourseClick={handleCourseClick} />
+          </main>
+        </>
+      ) : (
+        <CoursePreviewModal course={selectedCourse} onClose={handleCloseCourse} onNavigateToHome={handleCloseCourse} />
+      )}
     </div>
-  );
+  )
 }
