@@ -53,7 +53,7 @@ function CoursePreviewModal({course, onNavigateToHome }) {
           <div className="learn-section">
             <h2>Bạn sẽ học được gì</h2>
             <ul className="learn-list">
-              {course.modules.map((modules) => (
+              {course.modules.map((modules: String) => (
                 <li className="learn-item">
                   <div>
                   </div>

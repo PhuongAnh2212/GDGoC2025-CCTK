@@ -10,24 +10,23 @@ import "./style/gochoctap.css"
 
 // Images - using placeholder images for now
 const myImage = "/huhu.png"
-const mymage = "/huhu2.png"
+const mymage = "/huhu3.jpg"
 const im3 = "/huhu2.png"
 const im4 = "/huhu2.png"
 const im5 = "/huhu5.png"
 const im6 = "/30.jpg"
 
 
-// Course data
 const courseData = [
   {
     id: "llm",
     title: "Mô hình ngôn ngữ lớn là gì? (LLM)",
     image: myImage,
     alt: "LLM visual",
-    level: "Cơ bản",
-    category: "AI Fundamentals",
+    level: "Cơ bản/Dữ liệu",
+    category: "Nền tảng cơ bản về AI",
     description: "Khóa học này giới thiệu về các mô hình ngôn ngữ lớn (LLMs) như GPT và BERT...",
-    instructor: "Andrew Ng",
+    instructor: "Tom C",
     isNew: true,
     credential: "Professional Certificate",
     modules: [
@@ -61,7 +60,7 @@ const courseData = [
     image: mymage,
     alt: "DATA",
     level: "Cơ bản",
-    category: "Data Science",
+    category: "Phân tích dữ liệu",
     isNew: false,
     credential: "Course",
     instructor: "Andrew Ng",
@@ -85,10 +84,10 @@ const courseData = [
     image: im3,
     alt: "Image Processing",
     level: "Cơ bản",
-    category: "Computer Vision",
+    category: "Phân tích dữ liệu khác",
     isNew: true,
     credential: "Professional Certificate",
-    instructor: "Andrew Ng",
+    instructor: "Huynh Linh",
     description: "Khóa học này giải thích cách các mô hình AI xử lý và hiểu dữ liệu hình ảnh...",
     modules: [
       "Cơ bản về xử lý hình ảnh",
@@ -109,10 +108,10 @@ const courseData = [
     image: im4,
     alt: "Request Processing",
     level: "Cơ bản",
-    category: "AI Fundamentals",
+    category: "Nền tảng cơ bản về AI",
     isNew: false,
     credential: "Course",
-    instructor: "Andrew Ng",
+    instructor: "Ling Chao",
     description: "Khóa học này giải thích cách các mô hình AI xử lý và hiểu các yêu cầu từ người dùng...",
     modules: [
       "Hiểu về xử lý yêu cầu",
@@ -131,10 +130,10 @@ const courseData = [
     image: im5,
     alt: "Data Protection",
     level: "Nâng cao",
-    category: "Data Science",
+    category:"Phân tích dữ liệu",
     isNew: true,
     credential: "Professional Certificate",
-    instructor: "Andrew Ng",
+    instructor: "Tuan Ng",
     description: "Khóa học này giải thích các phương pháp và kỹ thuật bảo vệ dữ liệu trong các mô hình AI...",
     modules: [
       "Cơ bản về bảo mật dữ liệu",
@@ -153,10 +152,10 @@ const courseData = [
     image: im6,
     alt: "Keyword Explanation",
     level: "Nâng cao",
-    category: "Computer Vision",
+    category: "Phân tích dữ liệu khác",
     isNew: false,
     credential: "Course",
-    instructor: "Andrew Ng",
+    instructor: "Lisa M",
     description: "Khóa học này giải thích cách các mô hình AI phân tích và hiểu các từ khóa trong tài liệu...",
     modules: [
       "Cơ bản về xử lý văn bản",
@@ -169,19 +168,72 @@ const courseData = [
     ],
     baseLink: "/keyword-explanation",
   },
+  {
+    id: "ai-ethics",
+    title: "Đạo đức và trách nhiệm trong AI hiện đại", 
+    category: "Nền tảng cơ bản về AI",
+    instructor: "Son V",
+    image: im6,
+    baseLink: "/keyword-explanation",
+    description: "Khóa học này giải thích cách các mô hình AI phân tích và hiểu các từ khóa trong tài liệu...",
+    modules: [
+      "Cơ bản về xử lý văn bản",
+      "Trích xuất từ khóa",
+      "Phân tích tần suất từ",
+      "Mô hình không gian vector",
+      "Phân tích ngữ nghĩa",
+      "Mô hình chủ đề",
+      "Ứng dụng trong tìm kiếm và phân loại tài liệu",
+    ],
+  },
+
+  {
+    id: "ai-anasis",
+    title: "Phân tích Dữ liệu Marketing: Tối ưu hóa chiến dịch", 
+    category: "Phân tích dữ liệu",
+    instructor: "Lisa M",
+    image: myImage,
+    description: "Khóa học này giải thích cách các mô hình AI phân tích và hiểu các từ khóa trong tài liệu...",
+    modules: [
+      "Cơ bản về xử lý văn bản",
+      "Trích xuất từ khóa",
+      "Phân tích tần suất từ",
+      "Mô hình không gian vector",
+      "Phân tích ngữ nghĩa",
+      "Mô hình chủ đề",
+      "Ứng dụng trong tìm kiếm và phân loại tài liệu",
+    ],
+  },
+  {
+    id: "ai-word",
+    title: "Phân tích dữ liệu nghiên cứu khoa học", 
+    category: "Phân tích dữ liệu khác",
+    instructor: "Andrew Ng",
+    image: mymage,
+    description: "Khóa học này giải thích cách các mô hình AI phân tích và hiểu các từ khóa trong tài liệu...",
+    modules: [
+      "Cơ bản về xử lý văn bản",
+      "Trích xuất từ khóa",
+      "Phân tích tần suất từ",
+      "Mô hình không gian vector",
+      "Phân tích ngữ nghĩa",
+      "Mô hình chủ đề",
+      "Ứng dụng trong tìm kiếm và phân loại tài liệu",
+    ],
+  }
 ]
 
-// Group courses by category
-const groupedCourses = courseData.reduce((acc, course) => {
+
+const groupedCourses = courseData.reduce((acc: { [key: string]: any[] }, course) => {
   if (!acc[course.category]) {
-    acc[course.category] = []
+    acc[course.category] = [];
   }
-  acc[course.category].push(course)
-  return acc
-}, {})
+  acc[course.category].push(course);
+  return acc;
+}, {});
 
 // Home view with categorized courses
-function Home({ onCourseClick }) {
+function Home({ onCourseClick }: { onCourseClick: (courseId: String) => void }) {
   return (
     <>
       <div className="hero-section">
@@ -192,16 +244,16 @@ function Home({ onCourseClick }) {
         <CourseCategory key={category} title={category} courses={courses} onCourseClick={onCourseClick} />
       ))}
     </>
-  )
+  );
 }
 
 export default function HomePage() {
-  const [selectedCourse, setSelectedCourse] = useState(null)
+  const [selectedCourse, setSelectedCourse] = useState<any>(null)
 
-  const handleCourseClick = (courseId) => {
-    const course = courseData.find((c) => c.id === courseId)
-    setSelectedCourse(course)
-  }
+  const handleCourseClick = (courseId:String) => {
+    const course = courseData.find((c) => c.id === courseId);
+    setSelectedCourse(course);
+  };
 
   const handleCloseCourse = () => {
     setSelectedCourse(null)
@@ -216,7 +268,7 @@ export default function HomePage() {
           </main>
         </>
       ) : (
-        <CoursePreviewModal course={selectedCourse} onClose={handleCloseCourse} onNavigateToHome={handleCloseCourse} />
+        <CoursePreviewModal course={selectedCourse} onNavigateToHome={handleCloseCourse} />
       )}
     </div>
   )
