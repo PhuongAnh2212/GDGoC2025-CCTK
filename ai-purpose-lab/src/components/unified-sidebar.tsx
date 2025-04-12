@@ -49,7 +49,7 @@ export default function UnifiedSidebar({ content,
 
   return (
     
-    <div className="fixed left-16 top-18 h-full w-64 bg-white  shadow-md z-10">
+    <div className="fixed left-16 top-18 h-full w-64 bg-white shadow-md z-10">
       {/* Dynamic Content - Menu Mode */}
       {content === "menu" && (
       <>
@@ -275,7 +275,7 @@ export default function UnifiedSidebar({ content,
       {content === "chat" && (
         <>
           <div className="flex justify-between items-center p-4 border-b">
-            <h2 className="font-semibold">Conversations</h2>
+            <h2 className="font-semibold">Hội thoại</h2>
             {/* <Button variant="ghost" size="icon" 
               onClick={() => {console.log("Close button clicked");
                 onClose(); }}
