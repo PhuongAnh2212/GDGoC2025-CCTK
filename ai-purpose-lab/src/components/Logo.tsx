@@ -3,7 +3,7 @@ import Image from 'next/image';
 const Logo = () => {
     return (
       <div>
-        <img src="/logo.svg" alt="Logo" className="w-32" />
+        <img src="/images/logo.svg" alt="Logo" className="w-32" />
       </div>
     );
   };
