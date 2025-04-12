@@ -43,7 +43,7 @@ export default function CourseCard({ course, onClick }: CourseCardProps) {
       <div className="absolute inset-0 opacity-0 transition-all duration-300 group-hover:opacity-100 bg-gradient-to-b from-transparent via-[#581c870f] via-50% to-[#581c87e6] to-100%"></div>
 
       <div className="absolute bottom-4 left-4 right-4 text-white z-10 space-y-1">
-        <h3 className="text-lg font-semibold">{course.title}<h3>
+        <h3 className="text-lg font-semibold">{course.title}</h3>
 
         <div className="flex gap-2 mt-1">
           {levels.map((level, index) => (
