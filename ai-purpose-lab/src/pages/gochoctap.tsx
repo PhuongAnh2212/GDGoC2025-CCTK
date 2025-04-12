@@ -159,7 +159,7 @@ const courseData = [
   },
   {
     id: "marketing-analysis",
-    title: "Đường dẫn đến thông tin chi tiết: Mô hình dữ liệu và đường ống",
+    title: "Mô hình dữ liệu và đường ống",
     category: "Phân tích dữ liệu",
     level: "Nâng cao/Dữ liệu",
     instructor: "Lisa M",
