@@ -276,7 +276,7 @@ const groupedCourses = courseData.reduce((acc: { [key: string]: any[] }, course)
 function Home({ onCourseClick }: { onCourseClick: (courseId: string) => void }) {
   return (
     <>
-      <div className="hero-section">
+      <div className="mt-20 hero-section">
         <h1>Học gì với AI Purpose Lab?</h1>
       </div>
       {Object.entries(groupedCourses).map(([category, courses]) => (
