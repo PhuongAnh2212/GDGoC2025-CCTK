@@ -1,5 +1,7 @@
+"use client"
 import Image from "next/image"
 import Logo from "public/logo.svg"
+import { useEffect, useState } from "react"
 
 import { MapPin, Mail, Phone, ArrowRight } from "lucide-react"
 
@@ -12,9 +14,27 @@ export default function Home() {
 }
 
 function HeroSection() {
-  return (
+  const [position, setPosition] = useState({ x: 0, y: 0 })
 
-    <div>
+  useEffect(() => {
+    const updatePosition = (e: MouseEvent) => {
+      setPosition({ x: e.clientX, y: e.clientY })
+    }
+    window.addEventListener("mousemove", updatePosition)
+    return () => window.removeEventListener("mousemove", updatePosition)
+  }, [])
+
+  return (
+    
+
+    <div className="px-100 md:px-8 lg:px-16">
+      <div
+        className="pointer-events-none fixed inset-0 z-0 transition duration-300 ease-out"
+        style={{
+          background: `radial-gradient(600px at ${position.x}px ${position.y}px, rgba(119, 171, 255, 0.77), transparent 80%)`,
+        }}
+      />
+
       <section className="relative min-h-screen w-full overflow-hidden px-4 py-20 md:px-8 lg:px-16">
         <div className="w-full max-w-[800px] mx-auto absolute inset-0 -z-15">
           {/* <Image
@@ -29,17 +49,17 @@ function HeroSection() {
 
         <div className="mx-auto max-w-10xl px-5 md:px-10 lg:px-20">
           <div className="mb-16 space-y-6">
-            <h1 className="text-6xl font-bold tracking-tight md:text-9xl lg:text-[10rem] leading-tight">
-              <span className="bg-gradient-to-r from-blue-700 to-blue-500 bg-clip-text text-transparent">Building</span>
+            <h1 className="text-l font-bold tracking-tight md:text-6xl lg:text-[10rem] leading-tight">
+              <span className="bg-gradient-to-r from-blue-700 to-blue-500 bg-clip-text text-transparent">Xây dựng</span>
             </h1>
-            <h2 className="text-3xl font-bold tracking-tight md:text-6xl lg:text-[10rem] leading-tight">
+            <h2 className="text-l font-bold tracking-tight md:text-6xl lg:text-[10rem] leading-tight">
               <span className="bg-gradient-to-r from-blue-700 to-blue-500 bg-clip-text text-transparent">
-                Responsible AI,
+                AI có trách nhiệm,
               </span>
             </h2>
 
             <div className="flex items-center gap-2 pt-4 pl-2 md:pl-4 lg:pl-6">
-              <p className="text-2xl text-blue-700 md:text-3xl">together, with</p>
+              <p className="text-2xl text-blue-700 md:text-3xl">cùng</p>
               <div className="flex items-center gap-2">
                 <span className="text-2xl font-semibold text-blue-700 md:text-3xl">
                   <span>
@@ -119,7 +139,7 @@ function HeroSection() {
 
       {/* Meet Our Team - Now Fourth */}
       <section className="mx-auto max-w-10xl px-5 md:px-10 lg:px-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-40 items-start">
           <div>
             <h2 className="text-5xl font-bold mb-3">
               <span className="bg-gradient-to-r from-blue-700 to-blue-500 bg-clip-text text-transparent">Gặp gỡ</span>
@@ -140,7 +160,7 @@ function HeroSection() {
           <div className="relative">
             <div className="rounded-3xl overflow-hidden shadow-2xl w-full aspect-square bg-gradient-to-b from-blue-100 to-blue-600">
               <Image
-                src="/images/meo1.jpg"
+                src="/phuonganh.jpg"
                 alt="Phương Anh"
                 fill
                 className="object-cover mix-blend-overlay opacity-75"
@@ -160,19 +180,19 @@ function HeroSection() {
               name: "Hồng Ngọc",
               role: "Computer Science Major",
               university: "Fulbright University Vietnam",
-              image: "/images/meo2.jpg",
+              image: "/hongngoc.jpg",
             },
             {
               name: "Thụy Khuê",
-              role: "Integrated Science Major",
+              role: "Computer Science Major",
               university: "Fulbright University Vietnam",
-              image: "/images/meo3.jpg",
+              image: "/thuykhue.jpg",
             },
             {
               name: "Phương Quỳnh",
-              role: "Human-centered Engineering Major",
+              role: "Human-Centered Engineering Major",
               university: "Fulbright University Vietnam",
-              image: "/images/meo4.jpg",
+              image: "/phuongquynh.jpg",
             },
           ].map((member, index) => (
             <div key={index} className="relative">
