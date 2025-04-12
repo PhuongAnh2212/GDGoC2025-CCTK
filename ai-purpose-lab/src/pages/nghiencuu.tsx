@@ -1,9 +1,10 @@
 "use client"
 
 import type React from "react"
-
+import "./style/sample-answer.css"
 import { useState, useRef, useEffect } from "react"
 import { useChat } from "ai/react"
+import "./style/annotation.css"
 import {
   Database,
   Filter,
@@ -16,13 +17,34 @@ import {
   PenSquare,
   AlertTriangle,
 } from "lucide-react"
-import { PenLineIcon, Share2Icon, MicIcon, SendIcon, PlusIcon } from "@/components/icons"
 import { Button } from "@/components/ui/button"
 import { LeftSidebar } from "@/components/left-sidebar"
 import { RightSidebar } from "@/components/right-sidebar"
 import { UploadModal } from "@/components/upload-modal"
 import { SettingsModal } from "@/components/settings-modal"
 import Image from "next/image"
+
+const annotations = [
+  {
+    word: "nguyên tử",
+    description:
+      "Hydro là một nguyên tố hóa học trong hệ thống tuần hoàn các nguyên tố với nguyên tử số bằng 1, nguyên tử khối bằng 1 u.",
+  },
+  {
+    word: "electron",
+    description: "Electron hay điện tử, là một hạt hạ nguyên tử, có ký hiệu là e⁻ hay β⁻, mà điện tích của nó bằng trừ một điện tích cơ bản."
+  },
+  {
+    word: "hoá học hữu cơ",
+    description: "Hóa hữu cơ hay hóa học hữu cơ là một phân ngành hóa học nghiên cứu về cấu trúc, tính chất, thành phần và phản ứng hóa học của " +
+                "những hợp chất hữu cơ và vật liệu hữu cơ (các hợp chất chứa carbon)"
+  },
+  {
+    word: "vũ trụ",
+    description:
+      "Hydro là một nguyên tố hóa học trong hệ thống tuần hoàn các nguyên tố với nguyên tử số bằng 1, nguyên tử khối bằng 1 u.",
+  }
+]
 
 const pastConversations = [
   {
@@ -95,6 +117,8 @@ export default function Home() {
   const [isFirstMessage, setIsFirstMessage] = useState(true)
   const [hasConversationData, setHasConversationData] = useState(false)
   const [leftSidebarOpen, setLeftSidebarOpen] = useState(false)
+  const [isWaiting, setIsWaiting] = useState(false)
+  
   const [leftSidebarContent, setLeftSidebarContent] = useState<
     "datasets" | "models" | "conversations" | "settings" | null
   >(null)
@@ -116,9 +140,189 @@ export default function Home() {
     if (input.trim()) {
       setIsFirstMessage(false)
       setHasConversationData(true)
-      handleSubmit(e)
+
+      // Add the user message
+      const userMessage = { role: "user", content: input }
+      setMessages([...messages, userMessage])
+
+      // Clear input
+      handleInputChange({ target: { value: "" } } as React.ChangeEvent<HTMLInputElement>)
+
+      // Set waiting state
+      setIsWaiting(true)
+
+      // Wait for 2 seconds
+      setTimeout(() => {
+        // Add the predefined assistant response
+        const assistantResponse = {
+          role: "assistant",
+          content: `
+                <div class="chatbot-content">
+                  <h2 class="section-header">1. Tìm hiểu về Hidro</h2>
+                  
+                  <p>Hidro là chất phi kim có đặc tính khử, ở nhiệt độ phù hợp sẽ kết hợp với đơn chất oxi và các nguyên tố oxi có trong các oxi kim loại. Những phản ứng hóa học này có tính tỏa nhiệt nhiệt.</p>
+                  
+                  <p>Số hiệu nguyên tử của Hidro là 1, nguyên tử khối cũng tương đương bằng 1. Cấu hình electron cụ thể thuộc chu kì 1, nhóm IA. Công thức đơn chất của Hidro sử dụng có định là H2, còn phân tử khối được xác định bằng 2.</p>
+                  
+                  <h2 class="section-header">2. Phân tích về tính chất hóa học của Hidro</h2>
+                  
+                  <p>Không ít người trong quá trình học tập và nghiên cứu cần thông tin rõ về <strong>trình bày tính chất hóa học của Hidro</strong>. Có thể thực hiện phản ứng với nhiều loại chất khác tạo thành kết quả riêng biệt.</p>
+                  
+                  <h3 class="subsection-title">2.1. Hidro khi phản ứng với oxi</h3>
+                  
+                  <p>Nghiên cứu về <strong>tính chất hóa học của Hidro oxi nước</strong> cho thấy hoàn toàn kết hợp được với oxi trong nhiều tình huống khác nhau. Chất này sẽ cháy trong môi trường oxi tốt với phương trình hóa học:</p>
+                  
+                  <p style="text-align: center; font-style: italic;">2H2 + O2 → 2H2O</p>
+                  
+                  <p>Theo phân tích thì hỗn hợp của H2 và O2 khi kết hợp với nhau sẽ mang tính chất nổ. Và tác động nổ mạnh nhất khi cho với tỷ lệ tương ứng H2 : O2 là 2:1 cụ thể về thể tích.</p>
+                  
+                  <h3 class="subsection-title">2.2. Hidro phản ứng với oxit kim loại</h3>
+                  
+                  <p>Thực tế H2 này còn có tác dụng với một số dạng oxi kim loại. Một số dạng phổ biến thường thấy như FeO, CuO, Fe2O3, ... Hidro khử được khá nhiều oxi kim loại ở nền nhiệt độ cao hình thành kim loại và dạng hơi nước. Ví dụ: công thức kết hợp <strong>nêu tính chất hóa học của Hidro</strong>:</p>
+                  
+                  <p style="text-align: center; font-style: italic;">FeO + H2 -> Fe + H2O</p>
+                  
+                  <p style="text-align: center; font-style: italic;">H2 + CuO -> H2O + Cu</p>
+                  
+                  <p>Nhiều chuyên gia sau khi nghiên cứu đã cho ra kết luận Hidro phản ứng với đồng oxit mạnh mẽ. Khoảng nhiệt độ tác dụng nhanh chóng là khoảng 400 độ C khi đưa vào môi trường.</p>
+                  
+                  <h3 class="subsection-title">2.3. Hidro tác dụng với phi kim</h3>
+                  
+                  <p>Phân tích về <strong>tính chất hóa học của Hidro</strong> có phản ứng với các loại phi kim ở nền nhiệt độ cao. Khi đưa vào trong cùng môi trường sẽ hình thành chất khác. Một số kết hợp thường thấy phổ biến như:</p>
+                  
+                  <p style="text-align: center; font-style: italic;">2H2 + O2 -> 2H20</p>
+                  
+                  <p style="text-align: center; font-style: italic;">H2 + S -> H2S</p>
+                  
+                  <h3 class="subsection-title">2.4. Hidro kết hợp với phi kim halogen</h3>
+                  
+                  <p>Kết quả đưa Hidro có thể phản ứng với các loại phi kim halogen hình thành khí Hidro halogenua. Hợp chất này hoàn toàn dễ tan trong môi trường nước và tạo ra dung dịch axit halogenhidric. Một số tác dụng khi kết hợp chi tiết:</p>
+                  
+                  <p style="text-align: center; font-style: italic;">H2 + F2 -> 2HF</p>
+                  
+                  <p style="text-align: center; font-style: italic;">H2 + I2 ->2HI</p>
+                  
+                  <h3 class="subsection-title">2.5. Hidro có phản ứng với các dạng kim loại</h3>
+                  
+                  <p>Phân tích về <strong>tính chất hóa học của Hidro lớp 8</strong> có khả năng tác dụng với các dạng kim loại khác nhau hình thành muối Hidrua. Đây là một nghiên cứu rất hữu ích để hiện tại nhiều xưởng sản xuất đã ứng dụng vào nhiều hoạt động khác nhau phục vụ cuộc sống.</p>
+                  
+                  <p>Công thức của phản ứng được thiết lập với dạng cụ thể là M + H2 -> MHx. Một số phản ứng trên thực tế đã tổng hợp để các bạn tìm hiểu rõ hơn về tính chất hóa học này:</p>
+                  
+                  <p style="text-align: center; font-style: italic;">Mg + H2 -> MgH2</p>
+                  
+                  <p style="text-align: center; font-style: italic;">Na + H2 -> NaH</p>
+                  
+                  <div class="separator"></div>
+                </div>
+                `}
+            // Process the content to add annotations
+        assistantResponse.content = processContent(assistantResponse.content)
+
+        setMessages((prevMessages) => [...prevMessages, assistantResponse])
+        setIsWaiting(false)
+      }, 2000)
     }
   }
+  //                   _ooOoo_
+  //                  o8888888o
+  //                  88" . "88
+  //                  (| -_- |)
+  //                  O\  =  /O
+  //               ____/`---'\____
+  //             .'  \\|     |//  `.
+  //            /  \\|||  :  |||//  \
+  //           /  _||||| -:- |||||-  \
+  //           |   | \\\  -  /// |   |
+  //           | \_|  ''\---/''  |   |
+  //           \  .-\__  `-`  ___/-. /
+  //         ___`. .'  /--.--\  `. . __
+  //      ."" '<  `.___\_<|>_/___.'  >'"".
+  //     | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+  //     \  \ `-.   \_ __\ /__ _/   .-` /  /
+  //======`-.____`-.___\_____/___.-`____.-'======
+  //                   `=---='
+  //
+  //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  //          佛祖保佑           永无BUG
+  //         Buddha Bless        Never Crash
+
+  const renderMessageContent = (content: string) => {
+    if (content.includes("<span class='underline-word'>") || content.includes("<p>")) {
+      return (
+        <div
+          dangerouslySetInnerHTML={{ __html: content }}
+          className="relative interactive-text"
+
+        />
+      )
+    }
+    return content
+  }
+
+  useEffect(() => {
+    // Add event listeners for the underlined words
+    const handleHover = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      if (target.classList.contains("underline-word")) {
+        target.style.backgroundColor = "#D3EDFA"
+      }
+    }
+  
+    // Set back to black when mouse leaves
+    const handleLeave = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      if (target.classList.contains("underline-word")) {
+        target.style.backgroundColor = "white"
+      }
+    }
+  
+    document.addEventListener("mouseover", handleHover)
+    document.addEventListener("mouseout", handleLeave)
+  
+    return () => {
+      document.removeEventListener("mouseover", handleHover)
+      document.removeEventListener("mouseout", handleLeave)
+    }
+  }, [])
+  const processContent = (content: string) => {
+    let processedContent = content
+
+    // Process each annotation
+    annotations.forEach((annotation) => {
+      // Case insensitive search for the word
+      const regex = new RegExp(`\\b${annotation.word}\\b`, "gi")
+
+      // Replace with underlined version that has data attribute for description
+      processedContent = processedContent.replace(
+        regex,
+        `<span class='underline-word' data-description="${annotation.description}">${annotation.word}</span>`,
+      )
+    })
+    return processedContent
+  }
+
+  //                   _ooOoo_
+  //                  o8888888o
+  //                  88" . "88
+  //                  (| -_- |)
+  //                  O\  =  /O
+  //               ____/`---'\____
+  //             .'  \\|     |//  `.
+  //            /  \\|||  :  |||//  \
+  //           /  _||||| -:- |||||-  \
+  //           |   | \\\  -  /// |   |
+  //           | \_|  ''\---/''  |   |
+  //           \  .-\__  `-`  ___/-. /
+  //         ___`. .'  /--.--\  `. . __
+  //      ."" '<  `.___\_<|>_/___.'  >'"".
+  //     | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+  //     \  \ `-.   \_ __\ /__ _/   .-` /  /
+  //======`-.____`-.___\_____/___.-`____.-'======
+  //                   `=---='
+  //
+  //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  //          佛祖保佑           永无BUG
+  //         Buddha Bless        Never Crash
 
   const toggleLeftSidebar = (content: "datasets" | "models" | "conversations" | "settings" | null) => {
     if (leftSidebarContent === content && leftSidebarOpen) {
@@ -145,13 +349,15 @@ export default function Home() {
   }
 
   useEffect(() => {
-    if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight
-    }
-  }, [messages])
+      const styleElement = document.createElement("style")
+      document.head.appendChild(styleElement)
+      return () => {
+        document.head.removeChild(styleElement)
+      }
+    }, [])
 
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex h-screen bg-gray-50 font-manrope">
       {/* Left Sidebar Toggle */}
       <div className="fixed left-0 top-18 h-full z-10 transition-all duration-300 w-16 bg-white shadow-md flex flex-col">
         <div className="flex flex-col items-center py-4 space-y-6 flex-1">
@@ -214,7 +420,7 @@ export default function Home() {
       )}
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col transition-all duration-300 ml-16 mr-80">
+      <div className="flex-1 flex flex-col transition-all duration-300 ml-16 mr-80 font-manrope">
         {/* Chat Container */}
         <div ref={chatContainerRef} className="flex-1 overflow-y-auto p-6 bg-gradient-to-b from-blue-50 to-white">
           {messages.length === 0 && isFirstMessage ? (
@@ -277,6 +483,28 @@ export default function Home() {
               </div>
             </>
           ) : (
+            //                   _ooOoo_
+            //                  o8888888o
+            //                  88" . "88
+            //                  (| -_- |)
+            //                  O\  =  /O
+            //               ____/`---'\____
+            //             .'  \\|     |//  `.
+            //            /  \\|||  :  |||//  \
+            //           /  _||||| -:- |||||-  \
+            //           |   | \\\  -  /// |   |
+            //           | \_|  ''\---/''  |   |
+            //           \  .-\__  `-`  ___/-. /
+            //         ___`. .'  /--.--\  `. . __
+            //      ."" '<  `.___\_<|>_/___.'  >'"".
+            //     | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+            //     \  \ `-.   \_ __\ /__ _/   .-` /  /
+            //======`-.____`-.___\_____/___.-`____.-'======
+            //                   `=---='
+            //
+            //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            //          佛祖保佑           永无BUG
+            //         Buddha Bless        Never Crash
             <div className="max-w-4xl mx-auto">
               {messages.map((message, index) => (
                 <div key={index} className={`mb-6 ${message.role === "user" ? "text-right" : ""}`}>
@@ -285,7 +513,7 @@ export default function Home() {
                       message.role === "user" ? "bg-blue-600 text-white" : "bg-white border shadow-sm"
                     }`}
                   >
-                    {message.content}
+                    {message.role === "assistant" ? renderMessageContent(message.content) : message.content}
                     {message.role === "assistant" && message.content.includes("Hidro") && (
                       <div className="mt-2 p-2 bg-gray-50 rounded text-sm">
                         <p className="font-medium">Hidro: Nguyên Tố Cơ Bản Cho Tương Lai Năng Lượng.pdf</p>
@@ -308,6 +536,15 @@ export default function Home() {
                   )}
                 </div>
               ))}
+              {isWaiting && (
+                <div className="message assistant">
+                <div className="typing-indicator">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+              )}
             </div>
           )}
         </div>

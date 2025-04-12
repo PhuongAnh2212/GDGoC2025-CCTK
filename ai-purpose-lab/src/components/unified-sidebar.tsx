@@ -3,6 +3,7 @@ import { X } from "lucide-react"
 import { useState } from "react"
 import { ChevronDownIcon, HistoryIcon, MessageSquareIcon } from "@/components/icons"
 import { Button } from "./ui/button"
+import DataPreview from "./DataPreview"
 
 interface UnifiedSidebarProps {
   content: "chat" | "menu" | null
@@ -24,7 +25,15 @@ export default function UnifiedSidebar({ content,
   pastConversations, 
   onSelectConversation 
 }: UnifiedSidebarProps) {
-  
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false)
+
+  const openPreview = () => {
+    setIsPreviewOpen(true)
+  }
+
+  const closePreview = () => {
+    setIsPreviewOpen(false)
+  }
   const [activeView, setActiveView] = useState<"mode" | "history">("mode")
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedVersion, setSelectedVersion] = useState("Version Gemini v1.5");
@@ -141,11 +150,11 @@ export default function UnifiedSidebar({ content,
       {/* Dynamic Content - Chat Mode */}
       {activeView === "history" && (
         <div className="p-4 flex-grow overflow-y-auto">
-          <h2 className="text-lg font-medium mb-2">Lịch sử data</h2>
+          <h2 className="text-lg font-semibold mb-2 text-blue-800">Lịch sử data</h2>
 
           {/* CSV File */}
           <div className="mb-4">
-            <div className="p-3 border rounded-lg cursor-pointer hover:bg-gray-50 bg-blue-50 border-blue-200">
+            <div className="p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 ">
               <div className="font-medium">review_nha_hang.csv</div>
               <p className="text-sm text-gray-500">
                 2,890 dòng - 1050 KB
@@ -162,9 +171,35 @@ export default function UnifiedSidebar({ content,
               <p className="text-sm text-gray-500">
                 12:45 - 240 MB
                 <br />
-                Nội dung mời hai bạn gái giới thiệu món hải sản ở nhà hàng quận 7, trên sàn ăn, âm thanh hài hòa
+                Nội dung mời hai bạn gái giới thiệu món hải sản ở nhà hàng quận 7.
               </p>
             </div>
+          </div>
+          <div className="mb-4">
+            <div className="p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50" onClick={openPreview}>
+              <div className="font-medium">house.png</div>
+              <p className="text-sm text-gray-500">
+                12:45 - 240 MB
+                <br />
+              </p>
+            </div>
+
+            <DataPreview
+              isOpen={isPreviewOpen}
+              onClose={closePreview}
+              imageSrc="/placeholder.svg?height=800&width=1200"
+              fileName="house.png"
+            />
+          </div>
+          <div className="mb-4">
+            <div className="p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+              <div className="font-medium">draft_3.mp3</div>
+              <p className="text-sm text-gray-500">
+                12:45 - 240 MB
+                <br />
+              </p>
+            </div>
+            <DataPreview isOpen={isPreviewOpen} onClose={closePreview} imageSrc="/house.png" fileName="house.png" />
           </div>
 
           {/* Version Selector - Common to both views */}

@@ -1,6 +1,7 @@
 "use client"
 
 import type React from "react"
+import "./style/annotation.css"
 
 import { useState, useRef, useEffect } from "react"
 import { useChat } from "ai/react"
@@ -17,13 +18,26 @@ import {
   PenSquare,
   AlertTriangle,
 } from "lucide-react"
-import { PenLineIcon, Share2Icon, MicIcon, SendIcon, PlusIcon } from "@/components/icons"
 import { Button } from "@/components/ui/button"
 import UnifiedSidebar from "@/components/unified-sidebar"
 import { UploadModal } from "@/components/upload-modal"
-import { SettingsModal } from "@/components/settings-modal"
-import Image from "next/image"
 
+const annotations = [
+  {
+    word: "Hydro",
+    description:
+      "Hydro là một nguyên tố hóa học trong hệ thống tuần hoàn các nguyên tố với nguyên tử số bằng 1, nguyên tử khối bằng 1 u.",
+  },
+  {
+    word: "electron",
+    description: "Electron hay điện tử, là một hạt hạ nguyên tử, có ký hiệu là e⁻ hay β⁻, mà điện tích của nó bằng trừ một điện tích cơ bản."
+  },
+  {
+    word: "hoá học hữu cơ",
+    description: "Hóa hữu cơ hay hóa học hữu cơ là một phân ngành hóa học nghiên cứu về cấu trúc, tính chất, thành phần và phản ứng hóa học của " +
+                "những hợp chất hữu cơ và vật liệu hữu cơ (các hợp chất chứa carbon)"
+  }
+]
 const pastConversations = [
   {
     id: "1",
@@ -70,13 +84,25 @@ const pastConversations = [
 export default function Home() {
   const [isFirstMessage, setIsFirstMessage] = useState(true)
   const [menuSidebarOpen, setMenuSidebarOpen] = useState(false)
+  const [isWaiting, setIsWaiting] = useState(false)
   const [hasConversationData, setHasConversationData] = useState(false)
   const [menuSidebarContent, setMenuSidebarContent] = useState<
     "menu" | "chat" | null
   >(null)
   const [showUploadModal, setShowUploadModal] = useState(false)
   const chatContainerRef = useRef<HTMLDivElement>(null)
-  const { messages, input, handleInputChange, handleSubmit, setMessages } = useChat()
+  // const { messages, input, handleInputChange, handleSubmit, setMessages } = useChat()
+  const {
+    messages,
+    append,
+    setMessages,
+    handleSubmit: originalHandleSubmit,
+    input,
+    handleInputChange,
+    isLoading,
+  } = useChat({
+    api: "/api/chat",
+  })
   const handleNewChat = () => {
     setMessages([])
     setIsFirstMessage(true)
@@ -90,14 +116,102 @@ export default function Home() {
     setMenuSidebarOpen(false)
   }
 
+  useEffect(() => {
+    const styleElement = document.createElement("style")
+    document.head.appendChild(styleElement)
+
+    return () => {
+      document.head.removeChild(styleElement)
+    }
+  }, [])
+
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (input.trim()) {
       setIsFirstMessage(false)
       setHasConversationData(true)
-      handleSubmit(e)
+
+      // Add the user message
+      const userMessage = { role: "user", content: input }
+      setMessages([...messages, userMessage])
+
+      // Clear input
+      handleInputChange({ target: { value: "" } } as React.ChangeEvent<HTMLInputElement>)
+
+      // Set waiting state
+      setIsWaiting(true)
+
+      // Wait for 2 seconds
+      setTimeout(() => {
+        // Add the predefined assistant response
+        const assistantResponse = {
+          role: "assistant",
+          content:
+            "<p>Phản ứng oxy hóa khử hay còn được gọi là oxy hóa hoàn nguyên trong <span class='underline-word'>hóa học hữu cơ</span> là một loại phản ứng hóa học có sự thay " + 
+            "đổi trạng thái oxy hóa hay số oxy hóa của tác chất. Sự oxy hóa là sự nhường, cho, mất đi <span class='underline-word'>electron</span> hay sự tăng số oxy hóa. " + 
+            "Ngược lại, sự khử là sự nhận electron hay giảm số oxy hóa.</p>"}
+            // Process the content to add annotations
+        assistantResponse.content = processContent(assistantResponse.content)
+
+        setMessages((prevMessages) => [...prevMessages, assistantResponse])
+        setIsWaiting(false)
+      }, 2000)
     }
   }
+  const renderMessageContent = (content: string) => {
+    if (content.includes("<span class='underline-word'>") || content.includes("<p>")) {
+      return (
+        <div
+          dangerouslySetInnerHTML={{ __html: content }}
+          className="relative interactive-text"
+        />
+      )
+    }
+    return content
+  }
+
+  useEffect(() => {
+    // Add event listeners for the underlined words
+    const handleHover = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      if (target.classList.contains("underline-word")) {
+        target.style.backgroundColor = "#D3EDFA"
+      }
+    }
+  
+    // Set back to black when mouse leaves
+    const handleLeave = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      if (target.classList.contains("underline-word")) {
+        target.style.backgroundColor = "white"
+      }
+    }
+  
+    document.addEventListener("mouseover", handleHover)
+    document.addEventListener("mouseout", handleLeave)
+  
+    return () => {
+      document.removeEventListener("mouseover", handleHover)
+      document.removeEventListener("mouseout", handleLeave)
+    }
+  }, [])
+  const processContent = (content: string) => {
+    let processedContent = content
+
+    // Process each annotation
+    annotations.forEach((annotation) => {
+      // Case insensitive search for the word
+      const regex = new RegExp(`\\b${annotation.word}\\b`, "gi")
+
+      // Replace with underlined version that has data attribute for description
+      processedContent = processedContent.replace(
+        regex,
+        `<span class='underline-word' data-description="${annotation.description}">${annotation.word}</span>`,
+      )
+    })
+    return processedContent
+  }
+  
   const toggleMenuSidebar = (content: "menu" | "chat" | null) => {
     if (menuSidebarContent === content && menuSidebarOpen) {
       setMenuSidebarOpen(false)
@@ -108,7 +222,7 @@ export default function Home() {
     }
   }
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex h-screen bg-gray-50 font-manrope">
       {/* Toggle sidebar */}
       <div className="fixed left-0 top-18 h-full z-10 transition-all duration-300 w-16 bg-white shadow-md flex flex-col">
         <div className="flex flex-col items-center py-4 space-y-6 flex-1">
@@ -144,7 +258,7 @@ export default function Home() {
       {/* Main */}
       <div className=" flex-1 flex flex-col transition-all duration-300 w-full">
         {/* Chat container */}
-        <div ref={chatContainerRef} className="flex-1 overflow-y-auto p-6 pt-5 w-full bg-gradient-to-b from-blue-50 to-white">
+        <div ref={chatContainerRef} className="flex-1 overflow-y-auto p-6 pt-5 w-full bg-gradient-to-b top-20 from-blue-50 to-white">
         {messages.length === 0 && isFirstMessage ? (
           <>
             <div className="text-center mb-8 mt-8">
@@ -206,37 +320,46 @@ export default function Home() {
           </>
         )
         : (<div className="max-w-4xl mx-auto">
-            {messages.map((message, index) => (
-              <div key={index} className={`mb-6 ${message.role === "user" ? "text-right" : ""}`}>
-                <div
-                  className={`inline-block max-w-[80%] p-4 rounded-lg ${
-                    message.role === "user" ? "bg-blue-600 text-white" : "bg-white border shadow-sm"
-                  }`}
-                >
-                  {message.content}
-                  {message.role === "assistant" && message.content.includes("Hidro") && (
-                    <div className="mt-2 p-2 bg-gray-50 rounded text-sm">
-                      <p className="font-medium">Hidro: Nguyên Tố Cơ Bản Cho Tương Lai Năng Lượng.pdf</p>
-                      <p className="text-xs text-gray-500">Nature Energy (2023)</p>
-                    </div>
-                  )}
-                </div>
-                {message.role === "assistant" && index === messages.length - 1 && (
-                  <div className="mt-4 flex bottom-0">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="text-blue-600 border-blue-200"
-                      onClick={handleNewChat}
-                    >
-                      <MessageSquare className="h-4 w-4 mr-2" />
-                      Hội thoại mới
-                    </Button>
+          {messages.map((message, index) => (
+            <div key={index} className={`mb-6 ${message.role === "user" ? "text-right" : ""}`}>
+              <div
+                className={`inline-block max-w-[80%] p-4 rounded-lg ${
+                  message.role === "user" ? "bg-blue-600 text-white" : "bg-white border shadow-sm"
+                }`}
+              >
+                {message.role === "assistant" ? renderMessageContent(message.content) : message.content}
+                {message.role === "assistant" && message.content.includes("Hidro") && (
+                  <div className="mt-2 p-2 bg-gray-50 rounded text-sm">
+                    <p className="font-medium">Hidro: Nguyên Tố Cơ Bản Cho Tương Lai Năng Lượng.pdf</p>
+                    <p className="text-xs text-gray-500">Nature Energy (2023)</p>
                   </div>
                 )}
               </div>
-            ))}
-          </div>)}
+              {message.role === "assistant" && index === messages.length - 1 && (
+                <div className="mt-4 flex bottom-0">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="text-blue-600 border-blue-200"
+                    onClick={handleNewChat}
+                  >
+                    <MessageSquare className="h-4 w-4 mr-2" />
+                    Hội thoại mới
+                  </Button>
+                </div>
+              )}
+            </div>
+          ))}
+          {isWaiting && (
+                <div className="message assistant">
+                <div className="typing-indicator">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+              )}
+        </div>)}
         </div>
       </div>
 
