@@ -65,8 +65,7 @@ export default function UnifiedSidebar({ content,
               <div>
                 <div className="font-medium">Sáng tạo</div>
                 <p className="text-sm text-gray-500">
-                  "Creative mode" could refer to a chatbot or AI language model designed to assist and inspire
-                  creativity.
+                  Tăng tính sáng tạo, phù hợp với các công việc mang tính sáng tạo về mặt ý tưởng.
                 </p>
               </div>
             </label>
@@ -79,7 +78,7 @@ export default function UnifiedSidebar({ content,
               <div>
                 <div className="font-medium">Mặc định</div>
                 <p className="text-sm text-gray-500">
-                  "Balance mode" generally refers to an AI chatbot or language model
+                  Cân bằng giữa "sáng tạo" và "lập luận chặt chẽ", phù hợp với tác vụ đa mục đích
                 </p>
               </div>
             </label>
@@ -91,7 +90,7 @@ export default function UnifiedSidebar({ content,
               <input type="radio" name="mode" className="mt-1" />
               <div>
                 <div className="font-medium">Lập luận chặt chẽ</div>
-                <p className="text-sm text-gray-500">"Strict mode" generally refers to an AI chatbot</p>
+                <p className="text-sm text-gray-500">Ưu tiên tính chính xác cao, phù hợp trả lời các câu hỏi về mặt kỹ thuật, thực tế.</p>
               </div>
             </label>
           </div>
