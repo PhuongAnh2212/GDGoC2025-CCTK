@@ -30,7 +30,7 @@
   color: #666;
 }
 
-/* Course Category Styles */
+
 .course-category {
   margin-bottom: 3rem;
   padding: 0 5%;
@@ -54,8 +54,6 @@
   align-items: center;
   color: #0047ab;
   font-weight: 500;
-  background: none;
-  border: none;
   cursor: pointer;
 }
 
@@ -65,7 +63,7 @@
   gap: 1.5rem;
 }
 
-/* Course Card Styles */
+
 .course-card-container {
   cursor: pointer;
   transition: transform 0.2s;

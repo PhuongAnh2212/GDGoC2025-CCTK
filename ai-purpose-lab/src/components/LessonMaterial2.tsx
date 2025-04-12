@@ -1,19 +1,23 @@
-"use client"
-import { Play, Clock, Video, Code, User, ChevronRight } from "lucide-react"
-import "./LessonMaterial1.css"
-import "./Card1"
-import "./Logo"
+"use client";
 
-function CoursePreviewModal({course, onNavigateToHome }) {
-  if (!course) return null
+import { Play, Clock, Video, Code, User, ChevronRight } from "lucide-react";
+import "./LessonMaterial1.css";
+import { Course, Module} from "./Card1"; 
+
+interface CoursePreviewModalProps {
+  course: Course | null; 
+  onNavigateToHome: () => void; 
+}
+
+function CoursePreviewModal({ course, onNavigateToHome }: CoursePreviewModalProps) {
+  if (!course) return null; 
 
   return (
     <div className="course-detail-page">
-      {/* Hero section with gradient background */}
       <section className="course-hero">
         <div className="breadcrumbs">
-        <a href="#" onClick={onNavigateToHome}>
-           Các môn học
+          <a href="#" onClick={onNavigateToHome}>
+            Các môn học
           </a>
           <ChevronRight size={20} />
           <span>{course.title}</span>
@@ -21,45 +25,49 @@ function CoursePreviewModal({course, onNavigateToHome }) {
 
         <div className="hero-content">
           <div className="hero-text">
-            <div className="course-tags">
-            </div>
-
             <h1 className="hero-title">{course.title}</h1>
             <p className="hero-instructor">Hướng dẫn: {course.instructor || "Huynh Linh"}</p>
-
-            <button className="enroll-button" onClick={() => {}}>
-              Đăng ký học
-            </button>
           </div>
 
           <div className="hero-video">
             <div className="video-container">
               <img src={course.image || "/logo.svg"} alt={course.alt} />
-              <button className="play-button">
-                <Play size={24} fill="currentColor" />
-              </button>
             </div>
           </div>
         </div>
       </section>
 
-      
       <section className="course-content">
         <div className="content-container">
           <div className="learn-section">
             <h2>Nội dung khóa học</h2>
-            {course.description}
+            <p>{course.description}</p>
           </div>
           <div className="learn-section">
             <h2>Bạn sẽ học được gì</h2>
             <ul className="learn-list">
-              {course.modules.map((modules: String) => (
-                <li className="learn-item">
-                  <div>
-                  </div>
-                  <p>{typeof modules === "string" ? modules : modules.title}</p>
-                </li>
-              ))}
+              {course.modules.map((module, index) => {
+                // Sử dụng type assertions để TypeScript hiểu kiểu của module
+                if (typeof module === "string") {
+                  return (
+                    <li key={index} className="learn-item">
+                      <p>{module}</p>
+                    </li>
+                  );
+                } else {
+                  const mod = module as Module; // Type assertion
+                  return (
+                    <li key={index} className="learn-item">
+                      <p>{mod.title}</p>
+                      <ul>
+                        {mod.subItems.map((subItem, subIndex) => (
+                          <li key={subIndex}>{subItem}</li>
+                        ))}
+                      </ul>
+                    </li>
+                  );
+                }
+              })}
             </ul>
           </div>
 
@@ -88,7 +96,7 @@ function CoursePreviewModal({course, onNavigateToHome }) {
               </li>
               <li>
                 <Code size={20} />
-                <span>data ứng dụng</span>
+                <span>Data ứng dụng</span>
               </li>
               <li>
                 <User size={20} />
@@ -108,7 +116,7 @@ function CoursePreviewModal({course, onNavigateToHome }) {
         </button>
       </div>
     </div>
-  )
+  );
 }
 
-export default CoursePreviewModal
+export default CoursePreviewModal;

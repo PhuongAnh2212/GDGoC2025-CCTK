@@ -16,7 +16,6 @@ const im4 = "/huhu2.png"
 const im5 = "/huhu5.png"
 const im6 = "/30.jpg"
 
-
 const courseData = [
   {
     id: "llm",
@@ -25,7 +24,9 @@ const courseData = [
     alt: "LLM visual",
     level: "Cơ bản/Dữ liệu",
     category: "Nền tảng cơ bản về AI",
-    description: "Khóa học này giới thiệu về các mô hình ngôn ngữ lớn (LLMs) như GPT và BERT...",
+    description: "Khóa học giới thiệu các mô hình ngôn ngữ lớn (LLMs) như GPT và BERT, cách mạng hóa xử lý ngôn ngữ tự nhiên (NLP).\n\
+    Chúng ta sẽ tìm hiểu về kiến trúc transformer, cơ chế attention và ứng dụng trong dịch máy và tạo nội dung.\n\
+    Học viên sẽ thực hành áp dụng LLMs trong dự án thực tế, nắm bắt xu hướng công nghệ ngôn ngữ.",
     instructor: "Tom C",
     isNew: true,
     credential: "Professional Certificate",
@@ -39,32 +40,27 @@ const courseData = [
       "Cấu trúc LLM",
       "Attention mechanism",
       "Pre-training & Fine-tuning",
-      {
-        title: "Ứng dụng của LLM",
-        subItems: ["Chatbot, tự động hóa văn bản, phân tích sentiment, v.v."],
-      },
-      {
-        title: "Đánh giá và giới hạn",
-        subItems: ["Hiểu về hallucination, bias, và hiệu suất"],
-      },
-      {
-        title: "Tương lai và đạo đức",
-        subItems: ["Tác động xã hội & nguyên tắc sử dụng AI an toàn"],
-      },
+      "Chatbot, tự động hóa văn bản, phân tích sentiment, v.v.",
+      "Hiểu về hallucination, bias, và hiệu suất", 
+      "Tác động xã hội & nguyên tắc sử dụng AI an toàn",
     ],
     baseLink: "/llm-basic",
   },
+
   {
     id: "data-analysis",
     title: "Phân tích dữ liệu cho doanh nghiệp vừa và nhỏ",
     image: mymage,
     alt: "DATA",
-    level: "Cơ bản",
+    level: "Cơ bản/Dữ liệu",
     category: "Phân tích dữ liệu",
     isNew: false,
     credential: "Course",
     instructor: "Andrew Ng",
-    description: "Khóa học này giúp bạn hiểu cách phân tích dữ liệu để đưa ra quyết định kinh doanh tốt hơn...",
+    description:
+    "Khóa học này giúp bạn hiểu mô hình phân tích dữ liệu của chúng tôi, cho phép bạn áp dụng các phương pháp phân tích để đưa ra quyết định kinh doanh tốt hơn. Bạn sẽ học cách mô hình hóa dữ liệu và phân tích các thông tin quan trọng từ dữ liệu mà mô hình cung cấp.\n\
+    Khóa học sẽ hướng dẫn bạn cách triển khai mô hình phân tích, từ việc thu thập dữ liệu, xử lý và làm sạch dữ liệu, đến việc sử dụng các thuật toán phân tích để rút ra những kết luận có giá trị. Bạn sẽ có cơ hội thực hành với các công cụ phân tích như Python hoặc R,\n\
+    giúp bạn làm quen với các kỹ thuật phân tích hiện đại.",
     modules: [
       "Giới thiệu về phân tích dữ liệu",
       "Thu thập và làm sạch dữ liệu",
@@ -83,12 +79,14 @@ const courseData = [
     title: "Data hình ảnh được mô hình xử lý như thế nào?",
     image: im3,
     alt: "Image Processing",
-    level: "Cơ bản",
+    level: "Cơ bản/Dữ liệu",
     category: "Phân tích dữ liệu khác",
     isNew: true,
     credential: "Professional Certificate",
-    instructor: "Huynh Linh",
-    description: "Khóa học này giải thích cách các mô hình AI xử lý và hiểu dữ liệu hình ảnh...",
+    instructor: "Duong Phung",
+    description: "Khóa học này giải thích cách mô hình của chúng tôi phân tích dữ liệu hình ảnh bằng cách sử dụng Convolutional Neural Networks (CNN).\n\
+    Bạn sẽ học cách thu thập, xử lý và áp dụng các kỹ thuật học sâu để phát hiện đặc điểm và phân loại hình ảnh. \n\
+    Khóa học bao gồm các bài thực hành giúp bạn triển khai mô hình và áp dụng vào các bài toán thực tế. Hãy tham gia để nắm vững quy trình phân tích hình ảnh hiệu quả!",
     modules: [
       "Cơ bản về xử lý hình ảnh",
       "Biểu diễn hình ảnh trong máy tính",
@@ -107,7 +105,7 @@ const courseData = [
     title: "Mô hình xử lý yêu cầu như thế nào?",
     image: im4,
     alt: "Request Processing",
-    level: "Cơ bản",
+    level: "Cơ bản/Dữ liệu",
     category: "Nền tảng cơ bản về AI",
     isNew: false,
     credential: "Course",
@@ -129,7 +127,7 @@ const courseData = [
     title: "Dữ liệu được mô hình bảo vệ như thế nào?",
     image: im5,
     alt: "Data Protection",
-    level: "Nâng cao",
+    level: "Cơ bản/Dữ liệu",
     category:"Phân tích dữ liệu",
     isNew: true,
     credential: "Professional Certificate",
@@ -151,7 +149,7 @@ const courseData = [
     title: "Mô hình giải thích từ khóa tài liệu như thế nào?",
     image: im6,
     alt: "Keyword Explanation",
-    level: "Nâng cao",
+    level: "Cơ bản/Dữ liệu",
     category: "Phân tích dữ liệu khác",
     isNew: false,
     credential: "Course",
@@ -173,6 +171,7 @@ const courseData = [
     title: "Đạo đức và trách nhiệm trong AI hiện đại", 
     category: "Nền tảng cơ bản về AI",
     instructor: "Son V",
+    level: "Cơ bản/Dữ liệu",
     image: im6,
     baseLink: "/keyword-explanation",
     description: "Khóa học này giải thích cách các mô hình AI phân tích và hiểu các từ khóa trong tài liệu...",
@@ -191,6 +190,7 @@ const courseData = [
     id: "ai-anasis",
     title: "Phân tích Dữ liệu Marketing: Tối ưu hóa chiến dịch", 
     category: "Phân tích dữ liệu",
+    level: "Cơ bản/Dữ liệu",
     instructor: "Lisa M",
     image: myImage,
     description: "Khóa học này giải thích cách các mô hình AI phân tích và hiểu các từ khóa trong tài liệu...",
@@ -208,6 +208,7 @@ const courseData = [
     id: "ai-word",
     title: "Phân tích dữ liệu nghiên cứu khoa học", 
     category: "Phân tích dữ liệu khác",
+    level: "Cơ bản/Dữ liệu",
     instructor: "Andrew Ng",
     image: mymage,
     description: "Khóa học này giải thích cách các mô hình AI phân tích và hiểu các từ khóa trong tài liệu...",
@@ -241,7 +242,10 @@ function Home({ onCourseClick }: { onCourseClick: (courseId: String) => void }) 
       </div>
 
       {Object.entries(groupedCourses).map(([category, courses]) => (
-        <CourseCategory key={category} title={category} courses={courses} onCourseClick={onCourseClick} />
+        <CourseCategory key={category} 
+        title={category} courses={courses} 
+        onCourseClick={onCourseClick}
+        />
       ))}
     </>
   );
