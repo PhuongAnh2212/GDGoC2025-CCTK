@@ -1,6 +1,6 @@
 /* Base styles */
 .course-detail-page {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: 'Manrope', sans-serif;
   color: #333;
   background-color: #fff;
 }
@@ -354,7 +354,7 @@
   .hero-title {
     font-size: 32px;
   }
-
+ư
   .course-tags {
     flex-wrap: wrap;
   }

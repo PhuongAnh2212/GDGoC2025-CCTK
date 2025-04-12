@@ -2,6 +2,7 @@
 
 import { ChevronRight } from "lucide-react";
 import CourseCard from "./CourseCard";
+import "../app/globals.css"
 
 export interface Module {
   title: string; 
@@ -39,7 +40,7 @@ export default function CourseCategory({ title, courses, onCourseClick }: Course
 
       <div className="course-cards">
         {/* Limit displayed courses to the first 3 */}
-        {courses.slice(0, 3).map((course) => (
+        {courses.slice(0, 4).map((course) => (
           <CourseCard key={course.id} course={course} onClick={() => onCourseClick(course.id)} />
         ))}
       </div>
