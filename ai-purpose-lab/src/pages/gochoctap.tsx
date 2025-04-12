@@ -4,108 +4,96 @@ import { useState } from "react"
 
 import CoursePreviewModal from "@/components/LessonMaterial2"
 import CourseCategory from "@/components/Card1"
-import CourseCard from "@/components/CourseCard"
 import "./style/gochoctap.css"
+import "../app/globals.css"
 
 
-// Images - using placeholder images for now
-const myImage = "/huhu.png"
-const mymage = "/huhu3.jpg"
-const im3 = "/huhu2.png"
-const im4 = "/huhu2.png"
-const im5 = "/huhu5.png"
-const im6 = "/30.jpg"
 
 const courseData = [
+  // === NỀN TẢNG CƠ BẢN VỀ AI ===
+  {
+  id: "ai-introduction",
+  title: "Nhập môn trí tuệ nhân tạo (AI)",
+  category: "Nền tảng cơ bản về AI",
+  instructor: "Son V",
+  level: "Cơ bản/Dữ liệu",
+  image: "/AI.jpg",
+  baseLink: "/ai-ethics",
+  description: "Khóa học cung cấp kiến thức tổng quan và nền tảng về Trí tuệ Nhân tạo (AI), bao gồm các khái niệm, phương pháp, thuật toán,\n\
+  và ứng dụng trong các lĩnh vực như khoa học máy tính, y tế, tài chính, và tự động hóa. Học viên sẽ hiểu rõ lịch sử phát triển, tiềm năng của AI và khám phá các nhánh chính như Học máy (Machine Learning),\n\
+  Xử lý ngôn ngữ tự nhiên (Natural Language Processing - NLP) và Thị giác máy tính (Computer Vision).\n\
+  Ngoài các nội dung kỹ thuật, khóa học tập trung thảo luận về các vấn đề đạo đức và xã hội liên quan đến AI, bao gồm tính minh bạch, \n\
+  trách nhiệm, và công bằng. Học viên sẽ được tìm hiểu tác động kinh tế, xã hội,\n\
+  và pháp lý của AI để phát triển nhận thức và cách sử dụng công nghệ AI một cách bền vững.\n\
+  Khóa học còn đào sâu vào các thuật toán cốt lõi như tìm kiếm cơ bản (DFS, BFS) và nâng cao (A*, tìm kiếm tham lam), cũng như hệ thống logic và suy luận. \n\
+  Những nội dung này giúp học viên hiểu cách giải quyết vấn đề, phát triển tư duy logic và lập luận, cũng như áp dụng AI vào thực tế.\n\
+  Phần học máy (Machine Learning) giới thiệu các phương pháp học có giám sát và không giám sát với các thuật toán phổ biến như hồi quy tuyến tính, cây quyết định, k-means, và mạng nơ-ron nhân tạo.\n\
+  Khóa học cũng cập nhật xu hướng mới về Trí tuệ nhân tạo tạo sinh (Generative AI), giúp học viên nắm bắt được các tiến bộ công nghệ hiện đại trong lĩnh vực này.",
+  modules: [
+    "Giới thiệu về Trí tuệ nhân tạo",
+    "Giải quyết bài toán bằng tìm kiếm và tìm kiếm không thông tin (uninformed search)",
+    "Tìm kiếm có thông tin (informed/heuristic search)",
+    "Tìm kiếm trong môi trường phức tạp (Search in complex environments)",
+    "Tìm kiếm đối kháng (adversarial search)",
+    "Tìm kiếm thỏa mãn ràng buộc (constraint solving problem)",
+    "Biểu diễn tri thức và lập luận với logic mệnh đề (propositional logic)",
+    "Lập luận với logic bậc nhất (first-order logic)",
+    "Giới thiệu học máy (machine learning)",
+    "Phân lớp, gom nhóm cơ bản (classification, clustering)",
+    "Hồi quy (regression)",
+    "Chủ đề mở rộng (GenAI, NLP, CV)",
+    ],
+  },
+  {
+    id: "machine-learning",
+    title: "Học máy có giám sát: Hồi quy và phân loại",
+    image: "/images.jpg",
+    alt: "AI in machine-learning",
+    level: "Trung bình/Dữ liệu",
+    category: "Nền tảng cơ bản về AI",
+    isNew: true,
+    credential: "Course",
+    instructor: "Huy Tran",
+    description: "Khóa học Chuyên ngành Machine Learning (Học máy).\n\
+    Điểm nổi bật của khóa học:\n\
+    Kiến thức toàn diện: Bao gồm học máy có giám sát (hồi quy tuyến tính, hồi quy logistic,mạng nơ-ron,\n\
+    cây quyết định) và học máy không giám sát (phân cụm, giảm kích thước, hệ thống giới thiệu).\n\
+    Thực hành thực tế: Áp dụng các kỹ thuật học máy vào giải quyết vấn đề thực tế, bao gồm đánh giá và điều chỉnh mô hình, cải thiện hiệu suất dựa trên dữ liệu.\n\
+    Phù hợp với người mới bắt đầu: Chương trình được thiết kế thân thiện với người mới, giúp họ dễ dàng tiếp cận và nắm bắt kiến thức.\n\.",
+    modules: [
+      "Giới thiệu về Machine Learning:",
+      "Hồi quy với nhiều biến đầu vào",
+      "Phân loại"
+    ],
+    baseLink: "/ai-customer-service",
+  },
   {
     id: "llm",
-    title: "Mô hình ngôn ngữ lớn là gì? (LLM)",
-    image: myImage,
+    title: "Lập trình cho trí tuệ nhân tạo",
+    image: "/code.jpg",
     alt: "LLM visual",
-    level: "Cơ bản/Dữ liệu",
+    level: "Trung bình/Dữ liệu",
     category: "Nền tảng cơ bản về AI",
-    description: "Khóa học giới thiệu các mô hình ngôn ngữ lớn (LLMs) như GPT và BERT, cách mạng hóa xử lý ngôn ngữ tự nhiên (NLP).\n\
-    Chúng ta sẽ tìm hiểu về kiến trúc transformer, cơ chế attention và ứng dụng trong dịch máy và tạo nội dung.\n\
-    Học viên sẽ thực hành áp dụng LLMs trong dự án thực tế, nắm bắt xu hướng công nghệ ngôn ngữ.",
+    description: "Khóa học này được thiết kế dành cho sinh viên và cử nhân mọi ngành muốn theo đuổi sự nghiệp trong lĩnh vực AI.\n\
+    kết hợp giữa AI và phát triển phần mềm, giúp học viên nắm vững kiến thức và kỹ năng cần thiết để trở thành kỹ sư AI chuyên nghiệp.",
     instructor: "Tom C",
     isNew: true,
     credential: "Professional Certificate",
     modules: [
       "Giới thiệu về mô hình ngôn ngữ",
       "NLP là gì?",
-      "Vai trò của ngôn ngữ tự nhiên trong AI",
-      "Các mô hình truyền thống vs. LLM",
-      "Từ rule-based đến machine learning",
       "Giới thiệu Transformer",
-      "Cấu trúc LLM",
-      "Attention mechanism",
       "Pre-training & Fine-tuning",
-      "Chatbot, tự động hóa văn bản, phân tích sentiment, v.v.",
-      "Hiểu về hallucination, bias, và hiệu suất", 
-      "Tác động xã hội & nguyên tắc sử dụng AI an toàn",
+      "Ứng dụng LLMs"
     ],
     baseLink: "/llm-basic",
   },
-
-  {
-    id: "data-analysis",
-    title: "Phân tích dữ liệu cho doanh nghiệp vừa và nhỏ",
-    image: mymage,
-    alt: "DATA",
-    level: "Cơ bản/Dữ liệu",
-    category: "Phân tích dữ liệu",
-    isNew: false,
-    credential: "Course",
-    instructor: "Andrew Ng",
-    description:
-    "Khóa học này giúp bạn hiểu mô hình phân tích dữ liệu của chúng tôi, cho phép bạn áp dụng các phương pháp phân tích để đưa ra quyết định kinh doanh tốt hơn. Bạn sẽ học cách mô hình hóa dữ liệu và phân tích các thông tin quan trọng từ dữ liệu mà mô hình cung cấp.\n\
-    Khóa học sẽ hướng dẫn bạn cách triển khai mô hình phân tích, từ việc thu thập dữ liệu, xử lý và làm sạch dữ liệu, đến việc sử dụng các thuật toán phân tích để rút ra những kết luận có giá trị. Bạn sẽ có cơ hội thực hành với các công cụ phân tích như Python hoặc R,\n\
-    giúp bạn làm quen với các kỹ thuật phân tích hiện đại.",
-    modules: [
-      "Giới thiệu về phân tích dữ liệu",
-      "Thu thập và làm sạch dữ liệu",
-      "Phân tích thống kê cơ bản",
-      "Trực quan hóa dữ liệu",
-      "Phân tích xu hướng",
-      "Dự báo kinh doanh",
-      "Phân tích khách hàng",
-      "Tối ưu hóa quy trình",
-      "Báo cáo và trình bày kết quả",
-    ],
-    baseLink: "/data-analysis",
-  },
-  {
-    id: "image-processing",
-    title: "Data hình ảnh được mô hình xử lý như thế nào?",
-    image: im3,
-    alt: "Image Processing",
-    level: "Cơ bản/Dữ liệu",
-    category: "Phân tích dữ liệu khác",
-    isNew: true,
-    credential: "Professional Certificate",
-    instructor: "Duong Phung",
-    description: "Khóa học này giải thích cách mô hình của chúng tôi phân tích dữ liệu hình ảnh bằng cách sử dụng Convolutional Neural Networks (CNN).\n\
-    Bạn sẽ học cách thu thập, xử lý và áp dụng các kỹ thuật học sâu để phát hiện đặc điểm và phân loại hình ảnh. \n\
-    Khóa học bao gồm các bài thực hành giúp bạn triển khai mô hình và áp dụng vào các bài toán thực tế. Hãy tham gia để nắm vững quy trình phân tích hình ảnh hiệu quả!",
-    modules: [
-      "Cơ bản về xử lý hình ảnh",
-      "Biểu diễn hình ảnh trong máy tính",
-      "Tiền xử lý hình ảnh",
-      "Trích xuất đặc trưng",
-      "Mạng nơ-ron tích chập (CNN)",
-      "Phân loại hình ảnh",
-      "Phát hiện đối tượng",
-      "Phân đoạn hình ảnh",
-      "Ứng dụng thực tế",
-    ],
-    baseLink: "/image-processing",
-  },
   {
     id: "request-processing",
-    title: "Mô hình xử lý yêu cầu như thế nào?",
-    image: im4,
+    title: "Công nghệ phần mềm cho hệ thống trí tuệ nhân tạo",
+    image: "/pham.jpg",
     alt: "Request Processing",
-    level: "Cơ bản/Dữ liệu",
+    level: "Nâng cao/Dữ liệu",
     category: "Nền tảng cơ bản về AI",
     isNew: false,
     credential: "Course",
@@ -113,151 +101,203 @@ const courseData = [
     description: "Khóa học này giải thích cách các mô hình AI xử lý và hiểu các yêu cầu từ người dùng...",
     modules: [
       "Hiểu về xử lý yêu cầu",
-      "Phân tích ngữ nghĩa",
       "Nhận diện ý định",
-      "Xử lý ngôn ngữ tự nhiên",
-      "Tạo phản hồi",
-      "Xử lý đa ngữ cảnh",
-      "Tối ưu hóa độ chính xác",
+      "Xử lý ngôn ngữ tự nhiên"
     ],
     baseLink: "/request-processing",
   },
+  
+  // === PHÂN TÍCH DỮ LIỆU ===
+  {
+    id: "data-analysis",
+    title: "Nền tảng dữ liệu",
+    image:  "/data.jpg",
+    alt: "DATA",
+    level: "Cơ bản/Dữ liệu",
+    category: "Phân tích dữ liệu",
+    isNew: false,
+    credential: "Course",
+    instructor: "Andrew Ng",
+    description: "Khóa học giới thiệu về phân tích dữ liệu, giúp học viên nắm vững các kỹ năng cần thiết để trở thành nhà phân tích dữ liệu.\n\
+     Khóa học này được thiết kế thực hành, bao gồm các chủ đề như làm sạch dữ liệu, phân tích và trực quan hóa dữ liệu,\n\
+     sử dụng các công cụ như bảng tính, SQL, R và Tableau.\n\
+     Người học sẽ được trang bị kiến thức về quy trình làm việc của một nhà phân tích dữ liệu và cách sử dụng các công cụ chuyên nghiệp.\n\
+      Sau khi hoàn thành khóa học, học viên sẽ:\n\
+      Hiểu quy trình làm việc của một nhà phân tích dữ liệu cấp dưới.\n\
+      Nắm vững kỹ năng phân tích dữ liệu như dọn dẹp, phân tích và trực quan hóa dữ liệu.\n\
+      Khám phá các thuật ngữ và khái niệm quan trọng liên quan đến phân tích dữ liệu.\n\
+      Tự đánh giá tư duy phân tích và tìm kiếm cơ hội nghề nghiệp trong lĩnh vực phân tích dữ liệu.\n\
+      Chương trình này không yêu cầu kinh nghiệm trước đó và hướng đến những người muốn bắt đầu sự nghiệp trong ngành phân tích dữ liệu.",
+    modules: [
+      "Giới thiệu phân tích dữ liệu và tư duy phân tích",
+      "Thế giới dữ liệu tuyệt vời",
+      "Thiết lập hộp công cụ phân tích dữ liệu",
+      "Trở thành một chuyên gia dữ liệu công bằng và có tác động",
+    ],
+    baseLink: "/data-analysis",
+  },
+  
   {
     id: "data-protection",
-    title: "Dữ liệu được mô hình bảo vệ như thế nào?",
-    image: im5,
+    title: "Trí tuệ nhân tạo và các ứng dụng cho doanh nghiệp",
+    image: "/business.jpg",
     alt: "Data Protection",
-    level: "Cơ bản/Dữ liệu",
-    category:"Phân tích dữ liệu",
+    level: "Nâng cao/Dữ liệu",
+    category: "Phân tích dữ liệu",
     isNew: true,
     credential: "Professional Certificate",
     instructor: "Tuan Ng",
-    description: "Khóa học này giải thích các phương pháp và kỹ thuật bảo vệ dữ liệu trong các mô hình AI...",
+    description: "Khóa học này cung cấp kiến thức về trí tuệ nhân tạo (AI) và ứng dụng của nó trong môi trường doanh nghiệp.\n\
+     Các học viên sẽ được tìm hiểu về cách AI có thể giúp tối ưu hóa quy trình, tăng cường khả năng ra quyết định dựa trên dữ liệu và cải thiện hiệu quả công việc trong doanh nghiệp.",
     modules: [
-      "Cơ bản về bảo mật dữ liệu",
-      "Mã hóa và ẩn danh",
-      "Học liên hợp (Federated Learning)",
-      "Học máy bảo toàn quyền riêng tư",
-      "Bảo vệ dữ liệu trong quá trình huấn luyện",
-      "Bảo vệ dữ liệu trong quá trình suy luận",
-      "Tuân thủ quy định bảo vệ dữ liệu",
+      "Dữ liệu và Chiến lược Quyết định Dựa trên Dữ liệu (Data-Driven Decision)",
+      "Tổng quan về Trí tuệ Nhân tạo (AI)",
+      "Generative AI (Trí tuệ Nhân tạo Tạo Sinh)",
+      "Ứng dụng AI trong Công việc"
     ],
     baseLink: "/data-protection",
   },
   {
-    id: "keyword-explanation",
-    title: "Mô hình giải thích từ khóa tài liệu như thế nào?",
-    image: im6,
-    alt: "Keyword Explanation",
+    id: "marketing-analysis",
+    title: "Mô hình dữ liệu và đường ống",
+    category: "Phân tích dữ liệu",
+    level: "Nâng cao/Dữ liệu",
+    instructor: "Lisa M",
+    image: "/thong.jpg",
+    baseLink: "/marketing-analysis",
+    description: "Khóa học này giúp bạn hiểu cách đo lường hiệu quả chiến dịch marketing qua dữ liệu...",
+    modules: [
+      "Phân tích hành vi khách hàng",
+      "KPI và đo lường chiến dịch",
+      "Tối ưu ngân sách quảng cáo"
+    ],
+  },
+
+  {
+    id: "finacial-analysis",
+    title: "Phân tích dữ liệu thông minh với Power BI và GenAI",
+    category: "Phân tích dữ liệu",
+    level: "Trung bình /Dữ liệu",
+    instructor: "Rose H",
+    image: "/dulieumo.jpeg",
+    baseLink: "/marketing-analysis",
+    description: "Khóa học này giúp bạn hiểu cách đo lường hiệu quả chiến dịch marketing qua dữ liệu tài chính, từ hành vi khách hàng đến tối ưu ngân sách quảng cáo.",
+    modules: [
+      "Phân tích hành vi khách hàng",
+      "KPI và đo lường chiến dịch",
+      "Tối ưu ngân sách quảng cáo",
+    ],
+  },
+
+  // === PHÂN TÍCH DỮ LIỆU KHÁC ===
+  {
+    id: "image-processing",
+    title: "Giới thiệu về thị giác máy tính và xử lý hình ảnh",
+    image: "/cv.jpg",
+    alt: "Image Processing",
     level: "Cơ bản/Dữ liệu",
+    category: "Phân tích dữ liệu khác",
+    isNew: true,
+    credential: "Professional Certificate",
+    instructor: "Duong Phung",
+    description: "Tầm nhìn máy tính là một trong những lĩnh vực thú vị nhất trong học máy và AI. Nó có các ứng dụng trong nhiều ngành công nghiệp,\n\
+    chẳng hạn như xe tự lái, robot, thực tế tăng cường, và nhiều hơn nữa. \n\
+    Trong khóa học thân thiện với người mới bắt đầu này, bạn sẽ hiểu tầm nhìn máy tính và tìm hiểu về các ứng dụng khác nhau của nó trong nhiều ngành công nghiệp.\n\
+    Là một phần của khóa học này, bạn sẽ sử dụng Python, Gối và OpenCV để xử lý hình ảnh cơ bản và thực hiện phân loại hình ảnh và phát hiện đối tượng.",
+
+    modules: [
+      "Giới thiệu về Thị giác Máy tính",
+      "Xử lý Hình ảnh với OpenCV và Pillow",
+      "Phân loại Hình ảnh với Máy học"
+    ],
+    baseLink: "/image-processing",
+  },
+  {
+    id: "keyword-explanation",
+    title: "Phân tích Dữ liệu với SQL và Power BI",
+    image:  "/spl.jpg",
+    alt: "Keyword Explanation",
+    level: "Trung bình/Dữ liệu",
     category: "Phân tích dữ liệu khác",
     isNew: false,
     credential: "Course",
     instructor: "Lisa M",
-    description: "Khóa học này giải thích cách các mô hình AI phân tích và hiểu các từ khóa trong tài liệu...",
+    description: "Khóa học phân tích cách trích xuất và hiểu ý nghĩa từ khóa từ tài liệu bằng AI...",
     modules: [
-      "Cơ bản về xử lý văn bản",
       "Trích xuất từ khóa",
-      "Phân tích tần suất từ",
-      "Mô hình không gian vector",
-      "Phân tích ngữ nghĩa",
-      "Mô hình chủ đề",
-      "Ứng dụng trong tìm kiếm và phân loại tài liệu",
+      "Phân tích tần suất",
+      "Mô hình chủ đề"
     ],
     baseLink: "/keyword-explanation",
   },
   {
-    id: "ai-ethics",
-    title: "Đạo đức và trách nhiệm trong AI hiện đại", 
-    category: "Nền tảng cơ bản về AI",
-    instructor: "Son V",
-    level: "Cơ bản/Dữ liệu",
-    image: im6,
-    baseLink: "/keyword-explanation",
-    description: "Khóa học này giải thích cách các mô hình AI phân tích và hiểu các từ khóa trong tài liệu...",
+    id: "scientific-analysis",
+    title: "Deep Learning cho thị giác máy tính",
+    category: "Phân tích dữ liệu khác",
+    level: "Nâng cao/Dữ liệu",
+    instructor: "Andrew Ng",
+    image: "/deeplearning.jpg" ,
+    baseLink: "/scientific-analysis",
+    description: "Khóa học áp dụng AI vào phân tích dữ liệu khoa học để phát hiện tri thức mới...",
     modules: [
-      "Cơ bản về xử lý văn bản",
-      "Trích xuất từ khóa",
-      "Phân tích tần suất từ",
-      "Mô hình không gian vector",
-      "Phân tích ngữ nghĩa",
-      "Mô hình chủ đề",
-      "Ứng dụng trong tìm kiếm và phân loại tài liệu",
+      "Giới thiệu về Deep Learning và thị giác máy tính (Computer Vision)",
+      "Xây dựng và huấn luyện mô hình neural network",
+      "Ứng dụng trong nhận diện hình ảnh, phân loại đối tượng",
+      "Phát triển ứng dụng thực tế như nhận diện khuôn mặt, phân tích video, phân tích hình ảnh y tế"
     ],
   },
-
+  
   {
-    id: "ai-anasis",
-    title: "Phân tích Dữ liệu Marketing: Tối ưu hóa chiến dịch", 
-    category: "Phân tích dữ liệu",
-    level: "Cơ bản/Dữ liệu",
-    instructor: "Lisa M",
-    image: myImage,
-    description: "Khóa học này giải thích cách các mô hình AI phân tích và hiểu các từ khóa trong tài liệu...",
-    modules: [
-      "Cơ bản về xử lý văn bản",
-      "Trích xuất từ khóa",
-      "Phân tích tần suất từ",
-      "Mô hình không gian vector",
-      "Phân tích ngữ nghĩa",
-      "Mô hình chủ đề",
-      "Ứng dụng trong tìm kiếm và phân loại tài liệu",
-    ],
-  },
-  {
-    id: "ai-word",
-    title: "Phân tích dữ liệu nghiên cứu khoa học", 
+    id: "finacial-analysis",
+    title: "Xử lý hình ảnh và video",
     category: "Phân tích dữ liệu khác",
     level: "Cơ bản/Dữ liệu",
-    instructor: "Andrew Ng",
-    image: mymage,
-    description: "Khóa học này giải thích cách các mô hình AI phân tích và hiểu các từ khóa trong tài liệu...",
+    instructor: "Cong Khanh",
+    image: "/imagprocess.webp",
+    baseLink: "/marketing-analysis",
+    description: "Khóa học cung cấp kiến thức về xử lý ảnh và video, từ các ứng dụng cơ bản đến các công nghệ nâng cao.",
     modules: [
-      "Cơ bản về xử lý văn bản",
-      "Trích xuất từ khóa",
-      "Phân tích tần suất từ",
-      "Mô hình không gian vector",
-      "Phân tích ngữ nghĩa",
-      "Mô hình chủ đề",
-      "Ứng dụng trong tìm kiếm và phân loại tài liệu",
+      "Giới thiệu về xử lý ảnh và video",
+      "Nén ảnh và video",
+      "Xử lý không gian",
+      "Khôi phục ảnh"
     ],
-  }
+  },
 ]
-
 
 const groupedCourses = courseData.reduce((acc: { [key: string]: any[] }, course) => {
   if (!acc[course.category]) {
-    acc[course.category] = [];
+    acc[course.category] = []
   }
-  acc[course.category].push(course);
-  return acc;
-}, {});
+  acc[course.category].push(course)
+  return acc
+}, {})
 
-// Home view with categorized courses
-function Home({ onCourseClick }: { onCourseClick: (courseId: String) => void }) {
+function Home({ onCourseClick }: { onCourseClick: (courseId: string) => void }) {
   return (
     <>
       <div className="hero-section">
         <h1>Học gì với AI Purpose Lab?</h1>
       </div>
-
       {Object.entries(groupedCourses).map(([category, courses]) => (
-        <CourseCategory key={category} 
-        title={category} courses={courses} 
-        onCourseClick={onCourseClick}
+        <CourseCategory
+          key={category}
+          title={category}
+          courses={courses}
+          onCourseClick={onCourseClick}
         />
       ))}
     </>
-  );
+  )
 }
 
 export default function HomePage() {
   const [selectedCourse, setSelectedCourse] = useState<any>(null)
 
-  const handleCourseClick = (courseId:String) => {
-    const course = courseData.find((c) => c.id === courseId);
-    setSelectedCourse(course);
-  };
+  const handleCourseClick = (courseId: string) => {
+    const course = courseData.find((c) => c.id === courseId)
+    setSelectedCourse(course)
+  }
 
   const handleCloseCourse = () => {
     setSelectedCourse(null)
@@ -266,11 +306,9 @@ export default function HomePage() {
   return (
     <div className="app-container">
       {!selectedCourse ? (
-        <>
-          <main className="main-content">
-            <Home onCourseClick={handleCourseClick} />
-          </main>
-        </>
+        <main className="main-content">
+          <Home onCourseClick={handleCourseClick} />
+        </main>
       ) : (
         <CoursePreviewModal course={selectedCourse} onNavigateToHome={handleCloseCourse} />
       )}
